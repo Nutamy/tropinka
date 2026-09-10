@@ -638,7 +638,12 @@ section { padding: 64px 0; }
 .program-card .btn { margin-top: auto; }
 .program-card h3 .h3-sub { font-family: var(--font-body); font-weight: 700; font-size: 14px; color: var(--text-secondary); text-transform: none; }
 
-/* Tiered pricing rows (frequency-based tariffs) inside a program card */
+/* Tiered pricing rows (frequency-based tariffs) inside a program card.
+   Three explicit columns — frequency / monthly price / annual fee — each
+   number carries its own small uppercase label, mirroring the clarity of
+   the client's official PDF price list (labelled columns on every row,
+   not just the first) rather than concatenating "price + annual" into
+   one string. */
 .price-tiers {
   display: flex;
   flex-direction: column;
@@ -646,20 +651,21 @@ section { padding: 64px 0; }
   margin: 0 0 20px;
 }
 .price-tier {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) auto auto;
+  align-items: end;
+  gap: 4px 14px;
+  padding: 12px 14px;
   border-radius: 14px;
   background: var(--surface);
 }
+.price-tier.price-tier-2col { grid-template-columns: minmax(0, 1.15fr) auto; }
 .price-tier-main { background: rgba(31,143,144,0.1); }
-.price-tier .freq { font-size: 14px; font-weight: 700; color: var(--ink); }
-.price-tier .price-col { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
-.price-tier .amount { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink); }
-.price-tier .amount .period { font-size: 12px; }
-.price-tier .annual { font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+.price-tier .freq { font-size: 14px; font-weight: 700; color: var(--ink); padding-bottom: 2px; }
+.price-tier .tier-col { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.price-tier .tier-label { font-size: 10px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-secondary); white-space: nowrap; }
+.price-tier .amount { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--ink); white-space: nowrap; }
+.price-tier .annual { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--sea-dark); white-space: nowrap; }
 .price-note { font-size: 13px; color: var(--text-secondary); margin: -8px 0 16px; }
 
 .price-download { margin-top: 20px; }
