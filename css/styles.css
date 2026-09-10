@@ -636,6 +636,33 @@ section { padding: 64px 0; }
 }
 .program-price .period { font-family: var(--font-body); font-weight: 700; font-size: 14px; color: var(--text-secondary); }
 .program-card .btn { margin-top: auto; }
+.program-card h3 .h3-sub { font-family: var(--font-body); font-weight: 700; font-size: 14px; color: var(--text-secondary); text-transform: none; }
+
+/* Tiered pricing rows (frequency-based tariffs) inside a program card */
+.price-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+.price-tier {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--surface);
+}
+.price-tier-main { background: rgba(31,143,144,0.1); }
+.price-tier .freq { font-size: 14px; font-weight: 700; color: var(--ink); }
+.price-tier .price-col { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+.price-tier .amount { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink); }
+.price-tier .amount .period { font-size: 12px; }
+.price-tier .annual { font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+.price-note { font-size: 13px; color: var(--text-secondary); margin: -8px 0 16px; }
+
+.price-download { margin-top: 20px; }
 
 /* Anchor / comparison block */
 .anchor-block {
