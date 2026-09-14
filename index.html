@@ -44,8 +44,13 @@
 <!-- LCP: the hero illustration is the page's largest above-the-fold image.
      Preloading it (in parallel with the render-blocking font stylesheet)
      shaves the time-to-LCP versus letting the preload scanner discover it
-     only once it reaches the <img> tag in the body. -->
-<link rel="preload" as="image" href="images/hero-illustration.jpg" fetchpriority="high">
+     only once it reaches the <img> tag in the body. type="image/webp" makes
+     browsers that can't decode WebP skip this preload entirely (they fall
+     back to discovering the .jpg <img> normally) instead of wasting
+     bandwidth on a file they can't use. imagesrcset/imagesizes mirror the
+     <picture> below so the preloaded resource is the exact one the <img>
+     will actually pick. -->
+<link rel="preload" as="image" type="image/webp" href="images/hero-illustration.webp" imagesrcset="images/hero-illustration-700.webp 700w, images/hero-illustration.webp 1000w" imagesizes="(min-width: 960px) 519px, 100vw" fetchpriority="high">
 
 <!-- Schema.org / JSON-LD — local business + course catalog, so Google's
      rich results and AI answer engines (SGE, ChatGPT, Perplexity, Gemini,
@@ -170,7 +175,11 @@
 <header class="site-header">
   <div class="container">
     <a href="#top" class="logo">
-      <img class="logo-mark" src="images/logo.png" alt="Тропинка — детский центр" width="54" height="54">
+      <picture>
+        <source type="image/avif" srcset="images/logo.avif">
+        <source type="image/webp" srcset="images/logo.webp">
+        <img class="logo-mark" src="images/logo.png" alt="Тропинка — детский центр" width="54" height="54">
+      </picture>
       Тропинка
     </a>
 
@@ -242,7 +251,11 @@
 
     <div class="hero-media">
       <div class="hero-media-card">
-        <img src="images/hero-illustration.jpg" alt="Педагог и дети на занятии в «Тропинке»" width="1000" height="584" fetchpriority="high">
+        <picture>
+          <source type="image/avif" srcset="images/hero-illustration-700.avif 700w, images/hero-illustration.avif 1000w" sizes="(min-width: 960px) 519px, 100vw">
+          <source type="image/webp" srcset="images/hero-illustration-700.webp 700w, images/hero-illustration.webp 1000w" sizes="(min-width: 960px) 519px, 100vw">
+          <img src="images/hero-illustration.jpg" alt="Педагог и дети на занятии в «Тропинке»" width="1000" height="584" fetchpriority="high">
+        </picture>
       </div>
     </div>
   </div>
@@ -254,7 +267,11 @@
 <section id="about">
   <div class="container">
     <div class="section-head center">
-      <img class="about-logo" src="images/logo.png" alt="Тропинка" width="120" height="120">
+      <picture>
+        <source type="image/avif" srcset="images/logo.avif">
+        <source type="image/webp" srcset="images/logo.webp">
+        <img class="about-logo" src="images/logo.png" alt="Тропинка" width="120" height="120">
+      </picture>
       <span class="eyebrow eyebrow-onblue">О ЦЕНТРЕ</span>
       <h2>Тропинка — центр раннего развития и подготовки к школе в Алматы</h2>
       <p class="on-blue-muted">Мы работаем по российской программе «Вундеркиндики», адаптированной под казахстанские стандарты. Комплексное развитие ребёнка: от первых шагов — к уверенной готовности к школе. Учим через игру, движение и творчество, чтобы знания заходили легко и с интересом.</p>
@@ -613,7 +630,11 @@
 
       <div class="teacher-card">
         <div class="teacher-photo">
-          <img src="images/teacher-anna.jpg" alt="Анна Михайловна — основатель центра, логопед" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-anna.avif">
+            <source type="image/webp" srcset="images/teacher-anna.webp">
+            <img src="images/teacher-anna.jpg" alt="Анна Михайловна — основатель центра, логопед" loading="lazy">
+          </picture>
         </div>
         <div class="teacher-info">
           <h3>Анна Михайловна</h3>
@@ -624,7 +645,11 @@
 
       <div class="teacher-card">
         <div class="teacher-photo">
-          <img src="images/teacher-anastasia.jpg" alt="Анастасия Олеговна — педагог изостудии" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-anastasia.avif">
+            <source type="image/webp" srcset="images/teacher-anastasia.webp">
+            <img src="images/teacher-anastasia.jpg" alt="Анастасия Олеговна — педагог изостудии" loading="lazy">
+          </picture>
         </div>
         <div class="teacher-info">
           <h3>Анастасия Олеговна</h3>
@@ -635,7 +660,11 @@
 
       <div class="teacher-card">
         <div class="teacher-photo">
-          <img src="images/teacher-tatyana.jpg" alt="Татьяна Николаевна — логопед-дефектолог" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-tatyana.avif">
+            <source type="image/webp" srcset="images/teacher-tatyana.webp">
+            <img src="images/teacher-tatyana.jpg" alt="Татьяна Николаевна — логопед-дефектолог" loading="lazy">
+          </picture>
         </div>
         <div class="teacher-info">
           <h3>Татьяна Николаевна</h3>
@@ -646,7 +675,11 @@
 
       <div class="teacher-card">
         <div class="teacher-photo">
-          <img src="images/teacher-aidyn.jpg" alt="Мисс Айдын — педагог английского языка" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-aidyn.avif">
+            <source type="image/webp" srcset="images/teacher-aidyn.webp">
+            <img src="images/teacher-aidyn.jpg" alt="Мисс Айдын — педагог английского языка" loading="lazy">
+          </picture>
         </div>
         <div class="teacher-info">
           <h3>Мисс Айдын</h3>
@@ -657,7 +690,11 @@
 
       <div class="teacher-card">
         <div class="teacher-photo">
-          <img src="images/teacher-olga.jpg" alt="Ольга Викторовна — педагог" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-olga.avif">
+            <source type="image/webp" srcset="images/teacher-olga.webp">
+            <img src="images/teacher-olga.jpg" alt="Ольга Викторовна — педагог" loading="lazy">
+          </picture>
         </div>
         <div class="teacher-info">
           <h3>Ольга Викторовна</h3>
@@ -668,7 +705,11 @@
 
       <div class="teacher-card">
         <div class="teacher-photo">
-          <img src="images/teacher-saltanat.jpg" alt="Салтанат Есендыковна — педагог" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-saltanat.avif">
+            <source type="image/webp" srcset="images/teacher-saltanat.webp">
+            <img src="images/teacher-saltanat.jpg" alt="Салтанат Есендыковна — педагог" loading="lazy">
+          </picture>
         </div>
         <div class="teacher-info">
           <h3>Салтанат Есендыковна</h3>
@@ -692,17 +733,17 @@
     </div>
 
     <div class="bubble-gallery">
-      <button type="button" class="bubble bubble-lg" data-full="images/gallery-01.jpg" data-alt="Дети с педагогом на занятии в «Тропинке»"><img src="images/gallery-01.jpg" alt="Дети с педагогом на занятии в «Тропинке»" loading="lazy"></button>
-      <button type="button" class="bubble bubble-md" data-full="images/gallery-02.jpg" data-alt="Творческое занятие в «Тропинке»"><img src="images/gallery-02.jpg" alt="Творческое занятие в «Тропинке»" loading="lazy"></button>
-      <button type="button" class="bubble bubble-sm" data-full="images/gallery-03.jpg" data-alt="Праздник в детском центре «Тропинка»"><img src="images/gallery-03.jpg" alt="Праздник в детском центре «Тропинка»" loading="lazy"></button>
-      <button type="button" class="bubble bubble-md" data-full="images/gallery-04.jpg" data-alt="Творческая работа детей в «Тропинке»"><img src="images/gallery-04.jpg" alt="Творческая работа детей в «Тропинке»" loading="lazy"></button>
-      <button type="button" class="bubble bubble-lg" data-full="images/gallery-05.jpg" data-alt="Утренник в «Тропинке»"><img src="images/gallery-05.jpg" alt="Утренник в «Тропинке»" loading="lazy"></button>
-      <button type="button" class="bubble bubble-md" data-full="images/gallery-06.jpg" data-alt="Национальный праздник в «Тропинке»"><img src="images/gallery-06.jpg" alt="Национальный праздник в «Тропинке»" loading="lazy"></button>
-      <button type="button" class="bubble bubble-sm" data-full="images/gallery-07.jpg" data-alt="Педагог с ребёнком на празднике"><img src="images/gallery-07.jpg" alt="Педагог с ребёнком на празднике" loading="lazy"></button>
-      <button type="button" class="bubble bubble-md" data-full="images/gallery-08.jpg" data-alt="Ребёнок в национальном костюме"><img src="images/gallery-08.jpg" alt="Ребёнок в национальном костюме" loading="lazy"></button>
-      <button type="button" class="bubble bubble-lg" data-full="images/gallery-09.jpg" data-alt="Танцевальное выступление детей"><img src="images/gallery-09.jpg" alt="Танцевальное выступление детей" loading="lazy"></button>
-      <button type="button" class="bubble bubble-md" data-full="images/gallery-10.jpg" data-alt="Выпускница «Тропинки» с наградой"><img src="images/gallery-10.jpg" alt="Выпускница «Тропинки» с наградой" loading="lazy"></button>
-      <button type="button" class="bubble bubble-sm" data-full="images/gallery-11.jpg" data-alt="Выпускной в «Тропинке»"><img src="images/gallery-11.jpg" alt="Выпускной в «Тропинке»" loading="lazy"></button>
+      <button type="button" class="bubble bubble-lg" data-full="images/gallery-01.jpg" data-alt="Дети с педагогом на занятии в «Тропинке»"><picture><source type="image/avif" srcset="images/gallery-01.avif"><source type="image/webp" srcset="images/gallery-01.webp"><img src="images/gallery-01.jpg" alt="Дети с педагогом на занятии в «Тропинке»" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-md" data-full="images/gallery-02.jpg" data-alt="Творческое занятие в «Тропинке»"><picture><source type="image/avif" srcset="images/gallery-02.avif"><source type="image/webp" srcset="images/gallery-02.webp"><img src="images/gallery-02.jpg" alt="Творческое занятие в «Тропинке»" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-sm" data-full="images/gallery-03.jpg" data-alt="Праздник в детском центре «Тропинка»"><picture><source type="image/avif" srcset="images/gallery-03.avif"><source type="image/webp" srcset="images/gallery-03.webp"><img src="images/gallery-03.jpg" alt="Праздник в детском центре «Тропинка»" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-md" data-full="images/gallery-04.jpg" data-alt="Творческая работа детей в «Тропинке»"><picture><source type="image/avif" srcset="images/gallery-04.avif"><source type="image/webp" srcset="images/gallery-04.webp"><img src="images/gallery-04.jpg" alt="Творческая работа детей в «Тропинке»" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-lg" data-full="images/gallery-05.jpg" data-alt="Утренник в «Тропинке»"><picture><source type="image/avif" srcset="images/gallery-05.avif"><source type="image/webp" srcset="images/gallery-05.webp"><img src="images/gallery-05.jpg" alt="Утренник в «Тропинке»" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-md" data-full="images/gallery-06.jpg" data-alt="Национальный праздник в «Тропинке»"><picture><source type="image/avif" srcset="images/gallery-06.avif"><source type="image/webp" srcset="images/gallery-06.webp"><img src="images/gallery-06.jpg" alt="Национальный праздник в «Тропинке»" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-sm" data-full="images/gallery-07.jpg" data-alt="Педагог с ребёнком на празднике"><picture><source type="image/avif" srcset="images/gallery-07.avif"><source type="image/webp" srcset="images/gallery-07.webp"><img src="images/gallery-07.jpg" alt="Педагог с ребёнком на празднике" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-md" data-full="images/gallery-08.jpg" data-alt="Ребёнок в национальном костюме"><picture><source type="image/avif" srcset="images/gallery-08.avif"><source type="image/webp" srcset="images/gallery-08.webp"><img src="images/gallery-08.jpg" alt="Ребёнок в национальном костюме" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-lg" data-full="images/gallery-09.jpg" data-alt="Танцевальное выступление детей"><picture><source type="image/avif" srcset="images/gallery-09.avif"><source type="image/webp" srcset="images/gallery-09.webp"><img src="images/gallery-09.jpg" alt="Танцевальное выступление детей" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-md" data-full="images/gallery-10.jpg" data-alt="Выпускница «Тропинки» с наградой"><picture><source type="image/avif" srcset="images/gallery-10.avif"><source type="image/webp" srcset="images/gallery-10.webp"><img src="images/gallery-10.jpg" alt="Выпускница «Тропинки» с наградой" loading="lazy"></picture></button>
+      <button type="button" class="bubble bubble-sm" data-full="images/gallery-11.jpg" data-alt="Выпускной в «Тропинке»"><picture><source type="image/avif" srcset="images/gallery-11.avif"><source type="image/webp" srcset="images/gallery-11.webp"><img src="images/gallery-11.jpg" alt="Выпускной в «Тропинке»" loading="lazy"></picture></button>
     </div>
 
     <div class="insta-cta">
@@ -830,7 +871,7 @@
              it's replaced, the widget won't render and the form will not
              be submittable (fails closed, on purpose — see instructions). -->
         <div class="form-row turnstile-row">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEzpVOfwXqs-Nrm2" data-theme="light" data-language="ru"></div>
+          <div class="cf-turnstile" data-sitekey="0x0000000000000000000000AA" data-theme="light" data-language="ru"></div>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block" id="leadSubmit">Отправить заявку</button>
@@ -853,7 +894,14 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo"><img src="images/logo.png" alt="Тропинка" width="48" height="48"> Тропинка</div>
+        <div class="footer-logo">
+          <picture>
+            <source type="image/avif" srcset="images/logo.avif">
+            <source type="image/webp" srcset="images/logo.webp">
+            <img src="images/logo.png" alt="Тропинка" width="48" height="48">
+          </picture>
+          Тропинка
+        </div>
         <p class="footer-about">Центр раннего развития и подготовки к школе в Алматы. Работаем по программе «Вундеркиндики», адаптированной под стандарты РК.</p>
       </div>
 
