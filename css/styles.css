@@ -54,6 +54,28 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+/* Skip link — first focusable element on the page, invisible until a
+   keyboard user tabs to it. Required for keyboard navigation past the
+   header/nav on every page load (WCAG 2.4.1 Bypass Blocks). */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 300;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 14px 22px;
+  border-radius: var(--radius-pill);
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 12px;
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -103,6 +125,7 @@ p { margin: 0 0 12px; }
    longer needs to survive on a colored background, only look branded. */
 .eyebrow-onblue { color: var(--sea-dark) !important; }
 .on-blue-muted { color: var(--text-secondary) !important; }
+.section-head .on-blue-muted { margin-top: 12px; }
 .caption {
   font-family: var(--font-body);
   font-weight: 600;
@@ -454,6 +477,13 @@ section { padding: 64px 0; }
    in a wrapping grid, rather than a plain bulleted list.
    ========================================================================== */
 
+.about-logo {
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-sun);
+  margin: 0 auto 20px;
+}
+
 .develop-title {
   color: var(--ink);
   text-align: center;
@@ -593,6 +623,8 @@ section { padding: 64px 0; }
    Programs / pricing
    ========================================================================== */
 
+.programs-grid-primary { margin-bottom: 28px; }
+
 .program-card {
   position: relative;
   background: var(--white);
@@ -635,6 +667,7 @@ section { padding: 64px 0; }
   margin-bottom: 4px;
 }
 .program-price .period { font-family: var(--font-body); font-weight: 700; font-size: 14px; color: var(--text-secondary); }
+.program-card p { color: var(--text-secondary); }
 .program-card .btn { margin-top: auto; }
 .program-card h3 .h3-sub { font-family: var(--font-body); font-weight: 700; font-size: 14px; color: var(--text-secondary); text-transform: none; }
 
@@ -667,6 +700,27 @@ section { padding: 64px 0; }
 .price-tier .amount { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--ink); white-space: nowrap; }
 .price-tier .annual { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--sea-dark); white-space: nowrap; }
 .price-note { font-size: 13px; color: var(--text-secondary); margin: -8px 0 16px; }
+
+/* Layout QA finding (375-390px): .price-tier's 3rd/2nd columns are `auto`-
+   sized and the amounts inside them are intentionally `white-space: nowrap`
+   (so "57 000 ₸" never breaks mid-number) — on a narrow phone the two rigid
+   auto columns can outgrow the available card width, since only the first
+   (frequency) column is allowed to shrink. Below 400px this switches the
+   row from CSS Grid to a wrapping flex row: the frequency label always
+   takes its own full-width line, and the two price columns sit on the next
+   line(s), wrapping onto a further line individually if they still don't
+   fit — flex-wrap reflows instead of forcing an overflow. */
+@media (max-width: 400px) {
+  .price-tier {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 8px;
+  }
+  .price-tier .freq { flex: 1 1 100%; }
+  .price-tier .tier-col { flex: 1 1 auto; align-items: flex-start; }
+  .price-tier.price-tier-2col .tier-col { flex: 1 1 100%; align-items: flex-start; }
+}
 
 .price-download { margin-top: 20px; }
 
@@ -716,6 +770,8 @@ section { padding: 64px 0; }
 /* ==========================================================================
    Why trust us
    ========================================================================== */
+
+.why-us-address { margin-top: 32px; }
 
 .trust-card {
   display: flex;
@@ -805,19 +861,6 @@ section { padding: 64px 0; }
 }
 .teacher-photo svg { width: 46%; height: 46%; color: var(--border); }
 .teacher-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.teacher-photo .photo-note {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(59,42,74,0.72);
-  color: var(--white);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  white-space: nowrap;
-}
 /* Flex column + a fixed-height (2-line) description keeps every card the
    same overall height regardless of name/description length, so the photo
    frames and the white text area line up identically across all cards. */
@@ -873,7 +916,10 @@ section { padding: 64px 0; }
 .bubble:hover, .bubble:focus-visible {
   transform: scale(1.07);
   box-shadow: 0 20px 36px -14px rgba(11, 49, 56, 0.55);
-  outline: none;
+}
+.bubble:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 4px;
 }
 .bubble img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -881,10 +927,31 @@ section { padding: 64px 0; }
 .bubble-md { width: clamp(96px, 14vw, 156px); height: clamp(96px, 14vw, 156px); }
 .bubble-sm { width: clamp(68px, 10vw, 112px); height: clamp(68px, 10vw, 112px); }
 
-/* Gentle organic scatter instead of a strict row grid */
+/* Gentle organic scatter instead of a strict row grid (desktop/tablet) */
 .bubble-gallery .bubble:nth-child(4n+2) { margin-top: -18px; }
 .bubble-gallery .bubble:nth-child(5n+4) { margin-top: 16px; }
 .bubble-gallery .bubble:nth-child(3n+1) { margin-top: 6px; }
+
+/* Narrow phones: 11 wrapped bubbles of mixed sizes read as clutter at
+   ~375-390px. Below 640px the gallery becomes a snap-scrolling horizontal
+   strip instead — a native, thumb-friendly "swipe through photos" gesture
+   that also satisfies the brief's horizontal-scroll requirement in a place
+   the content genuinely fits it, rather than bolted onto an unrelated
+   section. */
+@media (max-width: 640px) {
+  .bubble-gallery {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 8px 4px 16px;
+    margin-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .bubble-gallery .bubble { margin-top: 0 !important; scroll-snap-align: center; }
+  .bubble-lg, .bubble-md, .bubble-sm { width: 132px; height: 132px; }
+}
 
 .insta-cta { text-align: center; }
 .insta-handle { font-weight: 800; color: #fff; }
@@ -979,12 +1046,17 @@ section { padding: 64px 0; }
    Final CTA
    ========================================================================== */
 
+.contact-grid { align-items: stretch; }
+
 .final-cta {
   background: linear-gradient(135deg, var(--sea-dark), #0E4647);
   border-radius: var(--radius-card-lg);
   padding: 48px 28px;
   text-align: center;
   color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 @media (min-width: 720px) { .final-cta { padding: 64px 48px; } }
 .final-cta h2 { color: var(--white); margin-bottom: 14px; }
@@ -1035,6 +1107,12 @@ section { padding: 64px 0; }
 .form-row select:focus {
   outline: none;
   border-color: var(--sea);
+  box-shadow: 0 0 0 3px rgba(31, 143, 144, 0.25);
+}
+.form-row input:focus-visible,
+.form-row select:focus-visible {
+  outline: 2px solid var(--sea);
+  outline-offset: 1px;
 }
 .form-consent {
   font-size: 12px;
@@ -1044,6 +1122,9 @@ section { padding: 64px 0; }
 }
 .form-consent a { color: var(--sea-dark); font-weight: 700; text-decoration: underline; }
 .hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; height: 0; width: 0; }
+/* Turnstile renders its own iframe at a fixed ~300×65px — just needs the
+   same row rhythm as the fields above it, nothing else to theme. */
+.turnstile-row { display: flex; justify-content: center; }
 .form-status {
   margin-top: 14px;
   padding: 12px 16px;
@@ -1068,6 +1149,8 @@ section { padding: 64px 0; }
 }
 @media (min-width: 720px) { .footer-grid { grid-template-columns: minmax(0,1.2fr) minmax(0,0.9fr) minmax(0,0.9fr) minmax(0,0.9fr); } }
 .footer-logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--white); margin-bottom: 12px; }
+.footer-logo img { border-radius: 50%; background: #fff; }
+.footer-about { max-width: 320px; font-size: 14px; }
 .footer-col h4 { font-family: var(--font-body); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 14px; }
 .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
 .footer-col a { font-size: 14px; color: rgba(255,255,255,0.7); }
@@ -1096,6 +1179,14 @@ section { padding: 64px 0; }
   justify-content: space-between;
   font-size: 13px;
   color: rgba(255,255,255,0.5);
+}
+/* Layout QA finding: the fixed .wa-float button sits 22px from the viewport
+   edge and visually overlaps the last line of footer text once a visitor
+   scrolls all the way down, on any viewport narrower than the container's
+   own side margins (≤900px covers tablet and every phone breakpoint).
+   Extra bottom padding lets that text clear the button once fully scrolled. */
+@media (max-width: 900px) {
+  .site-footer { padding-bottom: 100px; }
 }
 
 /* ==========================================================================
@@ -1157,23 +1248,131 @@ section { padding: 64px 0; }
 }
 
 .mobile-nav {
-  display: none;
   position: fixed;
   inset: 76px 0 0 0;
   background: var(--white);
   z-index: 49;
   padding: 24px 20px;
   overflow-y: auto;
+  /* Animated open/close instead of an instant display:none swap: opacity +
+     a short upward slide read as "the menu arrives", not "the menu appears". */
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
 }
-.mobile-nav.open { display: block; }
+.mobile-nav.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 .mobile-nav a {
   display: block;
   padding: 16px 4px;
   font-weight: 700;
   font-size: 18px;
   border-bottom: 1px solid var(--border-soft);
+  /* Each link fades in with a slight stagger while the menu opens —
+     index is set inline via --i by js/main.js (initMobileNav). */
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition-delay: calc(var(--i, 0) * 35ms);
+}
+.mobile-nav.open a {
+  opacity: 1;
+  transform: translateX(0);
 }
 .mobile-nav .btn { margin-top: 20px; }
+
+/* ==========================================================================
+   Motion design
+   Principle: motion clarifies hierarchy and confirms actions — it never
+   exists to show off. Every effect below is subtle, short (<600ms), and
+   fully neutralised under prefers-reduced-motion at the bottom of this file.
+   ========================================================================== */
+
+/* --- Hero entrance: pure CSS, runs on page load with no JS dependency.
+   Each element gets its own delay for a soft top-to-bottom stagger. --- */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-trust-row      { animation: heroIn 0.6s cubic-bezier(.22,.61,.36,1) both; }
+.hero h1              { animation: heroIn 0.6s cubic-bezier(.22,.61,.36,1) 0.08s both; }
+.hero-cta-row          { animation: heroIn 0.6s cubic-bezier(.22,.61,.36,1) 0.16s both; }
+.hero-address           { animation: heroIn 0.6s cubic-bezier(.22,.61,.36,1) 0.22s both; }
+.hero-media-card          { animation: heroIn 0.7s cubic-bezier(.22,.61,.36,1) 0.18s both; }
+
+/* --- Scroll reveal: JS (initScrollReveal in main.js) adds .reveal to a set
+   of section/card elements at load, then .in-view via IntersectionObserver
+   the first time each one crosses into the viewport. If JS never runs,
+   elements simply keep their default opacity: 1 — nothing is ever hidden
+   by CSS alone. Per-element stagger comes from --i, set by the same JS. --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: calc(min(var(--i, 0), 4) * 90ms);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Number counters: keeps digit width stable while js/main.js counts up
+   so the layout doesn't twitch as the digit count changes mid-animation. --- */
+.stat-box .num { font-variant-numeric: tabular-nums; }
+
+/* --- Card tilt + magnetic buttons: main.js sets `transform` directly via
+   inline style on mousemove (desktop, fine pointer only) and clears it on
+   mouseleave; this transition is what makes that return-to-rest smooth. --- */
+.program-card,
+.trust-card,
+.teacher-card {
+  transition: transform 0.25s cubic-bezier(.22,.61,.36,1), box-shadow 0.25s ease;
+  will-change: transform;
+}
+.btn-primary,
+.btn-secondary {
+  transition: transform 0.18s cubic-bezier(.22,.61,.36,1), box-shadow 0.15s ease, background 0.15s ease;
+}
+
+/* --- Custom cursor: a soft accent ring that trails the pointer and grows
+   over clickable elements. Desktop with a precise pointer only (see the
+   `(hover: hover) and (pointer: fine)` gate in main.js, which is what adds
+   .custom-cursor-active to <body> in the first place) — on touch/coarse
+   pointers this block never activates and the native cursor is untouched. --- */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  border: 2px solid var(--sea);
+  background: rgba(31, 143, 144, 0.08);
+  pointer-events: none;
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease, margin 0.2s ease, background 0.2s ease;
+  transform: translate3d(-100px, -100px, 0);
+}
+.custom-cursor-active .custom-cursor-dot { opacity: 1; }
+.custom-cursor-active.cursor-hover .custom-cursor-dot {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  background: rgba(255, 210, 51, 0.18);
+  border-color: var(--sun-dark);
+}
+/* Form fields keep the native text cursor — a ring following a caret would
+   fight the browser's own I-beam instead of helping. */
+.custom-cursor-active .lead-form,
+.custom-cursor-active .lead-form * {
+  cursor: auto;
+}
 
 /* ==========================================================================
    Utilities
@@ -1186,4 +1385,28 @@ section { padding: 64px 0; }
   width: 1px; height: 1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
+}
+
+/* ==========================================================================
+   Reduced motion
+   Must stay last so it wins the cascade against every animation/transition
+   declared above. Users who set this OS-level preference get instant state
+   changes — full content, no movement — everywhere on the site.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .hero-trust-row, .hero h1, .hero-cta-row, .hero-address, .hero-media-card {
+    animation: none;
+  }
+  .custom-cursor-dot { display: none; }
+  html { scroll-behavior: auto; }
 }

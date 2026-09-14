@@ -36,8 +36,133 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+
+<!-- Cloudflare Turnstile widget script (anti-spam on the lead form below).
+     `async defer` — never blocks rendering or LCP. -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<!-- LCP: the hero illustration is the page's largest above-the-fold image.
+     Preloading it (in parallel with the render-blocking font stylesheet)
+     shaves the time-to-LCP versus letting the preload scanner discover it
+     only once it reaches the <img> tag in the body. -->
+<link rel="preload" as="image" href="images/hero-illustration.jpg" fetchpriority="high">
+
+<!-- Schema.org / JSON-LD — local business + course catalog, so Google's
+     rich results and AI answer engines (SGE, ChatGPT, Perplexity, Gemini,
+     Claude) can cite exact hours, address, rating and prices instead of
+     guessing from free text. See report section 1 for field-by-field notes. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ChildCare",
+  "name": "Тропинка",
+  "alternateName": "Детский центр раннего развития «Тропинка»",
+  "description": "Центр раннего развития и подготовки к школе в Алматы. Методика «Вундеркиндики», адаптированная под казахстанские стандарты. Подготовка к школе, логопед, изостудия.",
+  "url": "https://tropinka.pages.dev/",
+  "logo": "https://tropinka.pages.dev/images/logo.png",
+  "image": "https://tropinka.pages.dev/images/og-image.jpg",
+  "telephone": "+77771960989",
+  "priceRange": "₸₸",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ул. Мустафина, 35а, ЖК Дуэт",
+    "addressLocality": "Алматы",
+    "addressCountry": "KZ"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.205039,
+    "longitude": 76.87732
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "10:00",
+      "closes": "17:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "57",
+    "bestRating": "5"
+  },
+  "sameAs": [
+    "https://www.instagram.com/tropka_log",
+    "https://www.facebook.com/tropkalog",
+    "https://t.me/+77771960989",
+    "https://go.2gis.com/hM5Co"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Программы центра «Тропинка»",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "«Хочу всё знать», 3–4 года",
+        "price": "40000",
+        "priceCurrency": "KZT",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "40000",
+          "maxPrice": "57000",
+          "priceCurrency": "KZT",
+          "unitText": "MONTH"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Подготовка к школе, 1 ступенька, 4–5 лет",
+        "price": "40000",
+        "priceCurrency": "KZT",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "40000",
+          "maxPrice": "57000",
+          "priceCurrency": "KZT",
+          "unitText": "MONTH"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Подготовка к школе, 2 ступенька, 5–6 лет",
+        "price": "40000",
+        "priceCurrency": "KZT",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "40000",
+          "maxPrice": "57000",
+          "priceCurrency": "KZT",
+          "unitText": "MONTH"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Логопед",
+        "price": "6000",
+        "priceCurrency": "KZT"
+      },
+      {
+        "@type": "Offer",
+        "name": "Изостудия «Рисовашки»",
+        "price": "22000",
+        "priceCurrency": "KZT",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "22000",
+          "priceCurrency": "KZT",
+          "unitText": "MONTH"
+        }
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
+
+<a class="skip-link" href="#top">Перейти к содержимому</a>
 
 <!-- ==========================================================================
      HEADER
@@ -117,7 +242,7 @@
 
     <div class="hero-media">
       <div class="hero-media-card">
-        <img src="images/hero-illustration.jpg" alt="Педагог и дети на занятии в «Тропинке»" width="1000" height="584">
+        <img src="images/hero-illustration.jpg" alt="Педагог и дети на занятии в «Тропинке»" width="1000" height="584" fetchpriority="high">
       </div>
     </div>
   </div>
@@ -129,10 +254,10 @@
 <section id="about">
   <div class="container">
     <div class="section-head center">
-      <img src="images/logo.png" alt="Тропинка" width="120" height="120" style="border-radius:50%;background:#fff;box-shadow:var(--shadow-sun);margin:0 auto 20px;">
+      <img class="about-logo" src="images/logo.png" alt="Тропинка" width="120" height="120">
       <span class="eyebrow eyebrow-onblue">О ЦЕНТРЕ</span>
       <h2>Тропинка — центр раннего развития и подготовки к школе в Алматы</h2>
-      <p class="on-blue-muted" style="margin-top:12px;">Мы работаем по российской программе «Вундеркиндики», адаптированной под казахстанские стандарты. Комплексное развитие ребёнка: от первых шагов — к уверенной готовности к школе. Учим через игру, движение и творчество, чтобы знания заходили легко и с интересом.</p>
+      <p class="on-blue-muted">Мы работаем по российской программе «Вундеркиндики», адаптированной под казахстанские стандарты. Комплексное развитие ребёнка: от первых шагов — к уверенной готовности к школе. Учим через игру, движение и творчество, чтобы знания заходили легко и с интересом.</p>
     </div>
 
     <h3 class="develop-title">Развиваем:</h3>
@@ -157,7 +282,7 @@
     <div class="section-head center">
       <span class="eyebrow eyebrow-onblue">МЕТОДИКА «ВУНДЕРКИНДИКИ»</span>
       <h2>Как проходит занятие</h2>
-      <p class="on-blue-muted" style="margin-top:12px;">Внимание дошкольника переключается в 3 раза чаще, чем у взрослого. Поэтому каждое задание длится 2–5 минут, а виды деятельности сменяют друг друга по одному и тому же принципу.</p>
+      <p class="on-blue-muted">Внимание дошкольника переключается в 3 раза чаще, чем у взрослого. Поэтому каждое задание длится 2–5 минут, а виды деятельности сменяют друг друга по одному и тому же принципу.</p>
     </div>
 
     <div class="flow-strip">
@@ -204,14 +329,14 @@
     <div class="section-head center">
       <span class="eyebrow eyebrow-onblue">НАПРАВЛЕНИЯ И ЦЕНЫ</span>
       <h2>Выберите формат для вашего ребёнка</h2>
-      <p class="on-blue-muted" style="margin-top:12px;">Стоимость зависит от частоты посещения. Пробное занятие перед записью — 4 000 ₸.</p>
+      <p class="on-blue-muted">Стоимость зависит от частоты посещения. Пробное занятие перед записью — 4 000 ₸.</p>
       <a class="btn btn-ghost-invert price-download" href="files/tropinka-price-list.pdf" download="Прайс-лист Тропинка 2026-2027.pdf">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M4 19h16"/></svg>
         Скачать прайс-лист (PDF)
       </a>
     </div>
 
-    <div class="grid grid-3" style="margin-bottom:28px;">
+    <div class="grid grid-3 programs-grid-primary">
       <div class="program-card">
         <span class="badge badge-success">Есть места</span>
         <h3>«Хочу всё знать»</h3>
@@ -311,7 +436,7 @@
       <div class="program-card">
         <h3>Логопед</h3>
         <div class="program-meta"><span>Индивидуально и в группе</span><span>По договорённости</span></div>
-        <p style="color:var(--text-secondary);">Работа с речью в том же здании — без отдельной поездки к частному специалисту.</p>
+        <p>Работа с речью в том же здании — без отдельной поездки к частному специалисту.</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Постановка и автоматизация звуков</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Развитие связной речи и словарного запаса</li>
@@ -323,7 +448,7 @@
       <div class="program-card">
         <h3>Изостудия «Рисовашки»</h3>
         <div class="program-meta"><span>13:00–14:00, Вт–Чт</span><span>В здании центра</span></div>
-        <p style="color:var(--text-secondary);">Творческое развитие и художественный вкус — как отдельное направление или дополнение к подготовке.</p>
+        <p>Творческое развитие и художественный вкус — как отдельное направление или дополнение к подготовке.</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Рисование, лепка и работа с разными материалами</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Развитие мелкой моторики и художественного вкуса</li>
@@ -394,7 +519,7 @@
       </div>
     </div>
 
-    <p class="text-center" style="margin-top:32px;">
+    <p class="text-center why-us-address">
       <a class="hero-trust-chip" href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">
         📍 Наш адрес: г. Алматы, ЖК Дуэт, ул. Мустафина, 35а →
       </a>
@@ -563,7 +688,7 @@
     <div class="section-head center">
       <span class="eyebrow eyebrow-onblue">ЖИЗНЬ ЦЕНТРА</span>
       <h2><a class="insta-link" href="https://www.instagram.com/tropka_log" target="_blank" rel="noopener">Больше фото и видео в Instagram</a></h2>
-      <p class="on-blue-muted" style="margin-top:12px;">Нажмите на фото, чтобы посмотреть его крупнее</p>
+      <p class="on-blue-muted">Нажмите на фото, чтобы посмотреть его крупнее</p>
     </div>
 
     <div class="bubble-gallery">
@@ -651,9 +776,9 @@
      ========================================================================== -->
 <section id="contact">
   <div class="container">
-    <div class="grid grid-2" style="align-items:stretch;">
+    <div class="grid grid-2 contact-grid">
 
-      <div class="final-cta" style="display:flex;flex-direction:column;justify-content:center;">
+      <div class="final-cta">
         <h2>Запишитесь на пробное занятие</h2>
         <p>Покажем центр, познакомим с педагогом и подберём подходящую группу.</p>
         <div class="final-cta-row">
@@ -672,7 +797,7 @@
 
         <div class="form-row">
           <label for="parentPhone">Телефон</label>
-          <input type="tel" id="parentPhone" name="parentPhone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+          <input type="tel" id="parentPhone" name="parentPhone" placeholder="+7 (___) ___-__-__" required autocomplete="tel" pattern="^[\d\s\-\+\(\)]{10,18}$" title="Введите номер телефона, например +7 777 196 09 89">
         </div>
 
         <div class="form-row">
@@ -691,6 +816,21 @@
         <div class="hp-field" aria-hidden="true">
           <label for="website">Website</label>
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- Cloudflare Turnstile — free, invisible-first anti-bot challenge.
+             The widget auto-injects a hidden "cf-turnstile-response" input
+             right here as a form-associated element, so the existing
+             `new FormData(form)` call in js/main.js picks it up with no
+             JS changes needed. functions/api/submit.js verifies the token
+             server-side before relaying anything to Telegram.
+             ⚠️ REPLACE THE PLACEHOLDER BELOW: paste your real Site Key from
+             the Cloudflare Turnstile dashboard into data-sitekey — see the
+             setup instructions you were given alongside this change. Until
+             it's replaced, the widget won't render and the form will not
+             be submittable (fails closed, on purpose — see instructions). -->
+        <div class="form-row turnstile-row">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEzpVOfwXqs-Nrm2" data-theme="light" data-language="ru"></div>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block" id="leadSubmit">Отправить заявку</button>
@@ -713,8 +853,8 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo"><img src="images/logo.png" alt="Тропинка" width="48" height="48" style="border-radius:50%;background:#fff;"> Тропинка</div>
-        <p style="max-width:320px;font-size:14px;">Центр раннего развития и подготовки к школе в Алматы. Работаем по программе «Вундеркиндики», адаптированной под стандарты РК.</p>
+        <div class="footer-logo"><img src="images/logo.png" alt="Тропинка" width="48" height="48"> Тропинка</div>
+        <p class="footer-about">Центр раннего развития и подготовки к школе в Алматы. Работаем по программе «Вундеркиндики», адаптированной под стандарты РК.</p>
       </div>
 
       <div class="footer-col">
@@ -770,7 +910,7 @@
 </a>
 
 <!-- Lightbox overlay for the gallery bubbles -->
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии" aria-hidden="true">
   <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&times;</button>
   <img src="" alt="" id="lightboxImg">
 </div>
