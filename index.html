@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Тропинка — центр раннего развития и подготовки к школе в Алматы</title>
+<title>Детский Центр «Тропинка» в Алматы</title>
 <meta name="description" content="15 лет работы, 5.0 и 57 отзывов на 2ГИС. Подготовка к школе 3–6 лет, логопед и изостудия — всё в одном центре на Мустафина, 35а. Запишитесь на пробное занятие в WhatsApp.">
 
 <!-- Canonical -->
@@ -12,8 +12,8 @@
 <!-- Open Graph / Facebook / WhatsApp / Telegram / VK -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tropinka.pages.dev/">
-<meta property="og:site_name" content="Тропинка — центр раннего развития">
-<meta property="og:title" content="Тропинка — центр раннего развития и подготовки к школе в Алматы">
+<meta property="og:site_name" content="Детский Центр «Тропинка»">
+<meta property="og:title" content="Детский Центр «Тропинка» в Алматы">
 <meta property="og:description" content="15 лет работы, 5.0 и 57 отзывов на 2ГИС. Подготовка к школе 3–6 лет, логопед и изостудия — всё в одном центре на Мустафина, 35а. Запишитесь на пробное занятие в WhatsApp.">
 <meta property="og:image" content="https://tropinka.pages.dev/images/og-image.jpg">
 <meta property="og:image:secure_url" content="https://tropinka.pages.dev/images/og-image.jpg">
@@ -26,15 +26,20 @@
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://tropinka.pages.dev/">
-<meta name="twitter:title" content="Тропинка — центр раннего развития и подготовки к школе в Алматы">
+<meta name="twitter:title" content="Детский Центр «Тропинка» в Алматы">
 <meta name="twitter:description" content="15 лет работы, 5.0 и 57 отзывов на 2ГИС. Подготовка к школе 3–6 лет, логопед и изостудия — всё в одном центре на Мустафина, 35а.">
 <meta name="twitter:image" content="https://tropinka.pages.dev/images/og-image.jpg">
 
 <link rel="icon" type="image/png" href="images/favicon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- Fonts are self-hosted in fonts/ (see styles.css @font-face rules) —
+     no more request to fonts.googleapis.com, which is what let the page
+     silently fall back to a system sans-serif on any visit where that
+     third-party CDN was slow, blocked, or unreachable. Preloading the two
+     heaviest-used cuts (bold headings, regular body text, Cyrillic) avoids
+     a flash of the fallback font on first paint. -->
+<link rel="preload" as="font" type="font/woff2" href="fonts/comfortaa-cyrillic-700-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/nunito-cyrillic-400-normal.woff2" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
 
 <!-- Cloudflare Turnstile widget script (anti-spam on the lead form below).
@@ -60,9 +65,9 @@
 {
   "@context": "https://schema.org",
   "@type": "ChildCare",
-  "name": "Тропинка",
-  "alternateName": "Детский центр раннего развития «Тропинка»",
-  "description": "Центр раннего развития и подготовки к школе в Алматы. Методика «Вундеркиндики», адаптированная под казахстанские стандарты. Подготовка к школе, логопед, изостудия.",
+  "name": "Детский Центр «Тропинка»",
+  "alternateName": "Тропинка",
+  "description": "Детский Центр «Тропинка» в Алматы. Программа «Вундеркиндики». Подготовка к школе, логопед, изостудия.",
   "url": "https://tropinka.pages.dev/",
   "logo": "https://tropinka.pages.dev/images/logo.png",
   "image": "https://tropinka.pages.dev/images/og-image.jpg",
@@ -70,7 +75,7 @@
   "priceRange": "₸₸",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "ул. Мустафина, 35а, ЖК Дуэт",
+    "streetAddress": "ул. Мустафина, 35а, ЖК «Дуэт»",
     "addressLocality": "Алматы",
     "addressCountry": "KZ"
   },
@@ -174,29 +179,22 @@
      ========================================================================== -->
 <header class="site-header">
   <div class="container">
-    <a href="#top" class="logo">
-      <picture>
-        <source type="image/avif" srcset="images/logo.avif">
-        <source type="image/webp" srcset="images/logo.webp">
-        <img class="logo-mark" src="images/logo.png" alt="Тропинка — детский центр" width="54" height="54">
-      </picture>
-      Тропинка
-    </a>
+    <a href="#top" class="logo"><picture><source type="image/avif" srcset="images/logo.avif"><source type="image/webp" srcset="images/logo.webp"><img class="logo-mark" src="images/logo.png" alt="«Тропинка» — детский центр" width="54" height="54"></picture> «Тропинка»</a>
 
     <nav class="nav-links" aria-label="Основная навигация">
       <a href="#about">О нас</a>
       <a href="#how-it-works">Как проходит занятие</a>
-      <a href="#programs">Цены</a>
-      <a href="#why-us">Почему мы?</a>
-      <a href="#reviews">Отзывы</a>
       <a href="#teachers">Педагоги</a>
+      <a href="#why-us">Почему мы?</a>
+      <a href="#programs">Прайс</a>
+      <a href="#reviews">Отзывы</a>
       <a href="#gallery">Фото</a>
       <a href="#location">Адрес</a>
     </nav>
 
     <div class="header-actions">
       <a class="header-phone wa-cta" data-msg="Здравствуйте! Нашла ваш сайт, хочу узнать подробнее о центре «Тропинка»." href="#">+7 777 196 09 89</a>
-      <a class="btn btn-primary wa-cta" data-msg="Здравствуйте! Хочу записаться на пробное занятие в «Тропинку»." href="#">Записаться</a>
+      <a class="btn btn-green wa-cta" data-msg="Здравствуйте! Хочу записаться на пробное занятие в «Тропинку»." href="#">Записаться</a>
       <button class="mobile-menu-btn" id="menuBtn" aria-label="Открыть меню" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -211,13 +209,13 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="#about">О нас</a>
   <a href="#how-it-works">Как проходит занятие</a>
-  <a href="#programs">Цены</a>
-  <a href="#why-us">Почему мы?</a>
-  <a href="#reviews">Отзывы</a>
   <a href="#teachers">Педагоги</a>
+  <a href="#why-us">Почему мы?</a>
+  <a href="#programs">Прайс</a>
+  <a href="#reviews">Отзывы</a>
   <a href="#gallery">Фото</a>
   <a href="#location">Адрес</a>
-  <a class="btn btn-primary btn-block wa-cta" data-msg="Здравствуйте! Хочу записаться на пробное занятие в «Тропинку»." href="#">Записаться на пробное</a>
+  <a class="btn btn-green btn-block wa-cta" data-msg="Здравствуйте! Хочу записаться на пробное занятие в «Тропинку»." href="#">Записаться на пробное</a>
 </div>
 
 <main id="top">
@@ -229,23 +227,22 @@
   <div class="container hero-grid">
     <div>
       <div class="hero-trust-row">
-        <span class="hero-trust-chip">🏆 15 лет работы</span>
-        <a class="hero-trust-chip" href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">⭐ 5.0 · 57 отзывов на 2ГИС</a>
-        <span class="hero-trust-chip">🇰🇿 Стандарты РК</span>
+        <span class="hero-trust-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sun-dark, #E0A800)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a2 2 0 0 0 0 4h1M16 5h3a2 2 0 0 1 0 4h-1"/><path d="M10 13v2M14 13v2"/><path d="M8 20h8M9 17h6l.5 3H8.5z"/></svg> 15 лет работы</span>
+        <a class="hero-trust-chip" href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--sun-dark, #E0A800)" stroke="none"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg> 5.0 · 57 отзывов на 2ГИС</a>
       </div>
 
-      <h1>Ваш ребёнок будет <span class="accent">полностью готов к школе</span></h1>
+      <h1>«Тропинка» — маленькие шаги к <span class="accent">большим успехам</span>! <svg class="sparkle" width="26" height="26" viewBox="0 0 24 24" fill="var(--sun-dark)" aria-hidden="true"><path d="M12 2c.7 3.2 1.8 4.3 5 5-3.2.7-4.3 1.8-5 5-.7-3.2-1.8-4.3-5-5 3.2-.7 4.3-1.8 5-5z"/></svg></h1>
 
       <div class="hero-cta-row">
         <a class="btn btn-primary wa-cta" data-msg="Здравствуйте! Хочу записаться на пробное занятие в «Тропинку»." href="#">
           Записаться на пробное занятие
         </a>
-        <a class="btn btn-ghost-invert" href="#programs">Смотреть программы и цены</a>
+        <a class="btn btn-purple" href="#programs">Смотреть программы и цены</a>
       </div>
 
       <a class="hero-address" href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5C5 5.9 8.1 3 12 3s7 2.9 7 6.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-        г. Алматы, ЖК Дуэт, ул. Мустафина, 35а
+        г. Алматы, ЖК «Дуэт», ул. Мустафина, 35а
       </a>
     </div>
 
@@ -264,29 +261,33 @@
 <!-- ==========================================================================
      ABOUT
      ========================================================================== -->
-<section id="about">
+<section id="about" class="blob-decor">
+  <div class="blob blob-a" aria-hidden="true"></div>
+  <div class="blob blob-b" aria-hidden="true"></div>
   <div class="container">
     <div class="section-head center">
       <picture>
         <source type="image/avif" srcset="images/logo.avif">
         <source type="image/webp" srcset="images/logo.webp">
-        <img class="about-logo" src="images/logo.png" alt="Тропинка" width="120" height="120">
+        <img class="about-logo" src="images/logo.png" alt="«Тропинка»" width="120" height="120">
       </picture>
       <span class="eyebrow eyebrow-onblue">О ЦЕНТРЕ</span>
-      <h2>Тропинка — центр раннего развития и подготовки к школе в Алматы</h2>
-      <p class="on-blue-muted">Мы работаем по российской программе «Вундеркиндики», адаптированной под казахстанские стандарты. Комплексное развитие ребёнка: от первых шагов — к уверенной готовности к школе. Учим через игру, движение и творчество, чтобы знания заходили легко и с интересом.</p>
+      <h2>Детский Центр «Тропинка» в Алматы</h2>
+      <p class="on-blue-muted">Мы работаем по программе <mark class="hl hl-sun">«Вундеркиндики»</mark>. Комплексное развитие ребёнка: от первых шагов — к уверенной готовности к школе. Учим через игру, движение и творчество, чтобы знания приобретались <mark class="hl hl-green">легко и с интересом</mark>.</p>
     </div>
 
-    <h3 class="develop-title">Развиваем:</h3>
+    <div class="develop-section">
+    <h3 class="develop-title">Развиваем <svg class="sparkle" width="20" height="20" viewBox="0 0 24 24" fill="var(--orange)" aria-hidden="true"><path d="M12 2c.7 3.2 1.8 4.3 5 5-3.2.7-4.3 1.8-5 5-.7-3.2-1.8-4.3-5-5 3.2-.7 4.3-1.8 5-5z"/></svg>:</h3>
     <div class="develop-grid">
-      <div class="develop-item"><span class="develop-icon">🧠</span><span>Интеллект и познавательную сферу</span></div>
-      <div class="develop-item"><span class="develop-icon">🧩</span><span>Память, внимание, мышление, восприятие</span></div>
-      <div class="develop-item"><span class="develop-icon">🗣️</span><span>Логику и связную речь</span></div>
-      <div class="develop-item"><span class="develop-icon">🌍</span><span>Представления об окружающем мире и пространстве</span></div>
-      <div class="develop-item"><span class="develop-icon">🎨</span><span>Креативность и вкус</span></div>
-      <div class="develop-item"><span class="develop-icon">🤲</span><span>Мелкую и крупную моторику</span></div>
-      <div class="develop-item"><span class="develop-icon">🎵</span><span>Музыкальность и чувство ритма</span></div>
-      <div class="develop-item"><span class="develop-icon">🤝</span><span>Коммуникацию и социализацию</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.55 1 1.3 1 2.1V16h6v-.4c0-.8.4-1.55 1-2.1A6 6 0 0 0 12 3z"/></svg></span><span>Интеллект и познавательную сферу</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 0-1-1v-1a2 2 0 0 0-4 0v1a1 1 0 0 0-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a2 2 0 0 0 0-4H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg></span><span>Память, внимание, мышление, восприятие</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span>Логику и связную речь</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9z"/></svg></span><span>Представления об окружающем мире и пространстве</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.6-.38-.99 0-.83.67-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.42-4.03-8-9-8z"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="10.5" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="10.5" r="1" fill="currentColor" stroke="none"/></svg></span><span>Креативность и вкус</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V6a1.5 1.5 0 0 1 3 0v5M11 11V4.5a1.5 1.5 0 0 1 3 0V11M14 11.5V6a1.5 1.5 0 0 1 3 0v8c0 3.31-2.69 6-6 6h-1c-1.5 0-2.4-.5-3.3-1.5L3 14.5c-.5-.6-.4-1.5.2-2 .5-.4 1.3-.4 1.8.1L7 14"/></svg></span><span>Мелкую и крупную моторику</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><span>Музыкальность и чувство ритма</span></div>
+      <div class="develop-item"><span class="develop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 21v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1"/><circle cx="18" cy="9" r="2.5"/><path d="M15.5 21v-.8a4 4 0 0 1 3-3.87"/></svg></span><span>Коммуникацию и социализацию</span></div>
+    </div>
     </div>
   </div>
 </section>
@@ -297,17 +298,17 @@
 <section id="how-it-works">
   <div class="container">
     <div class="section-head center">
-      <span class="eyebrow eyebrow-onblue">МЕТОДИКА «ВУНДЕРКИНДИКИ»</span>
+      <span class="eyebrow eyebrow-onblue">ПРОГРАММА «ВУНДЕРКИНДИКИ»</span>
       <h2>Как проходит занятие</h2>
-      <p class="on-blue-muted">Внимание дошкольника переключается в 3 раза чаще, чем у взрослого. Поэтому каждое задание длится 2–5 минут, а виды деятельности сменяют друг друга по одному и тому же принципу.</p>
+      <p class="on-blue-muted">Внимание дошкольника переключается в 3 раза чаще, чем у взрослого, поэтому каждое задание длится 2–5 минут, а виды деятельности сменяют друг друга по одному и тому же принципу.</p>
     </div>
 
     <div class="flow-strip">
-      <div class="flow-step"><span class="icon">🧠</span><strong>Мысль</strong></div>
+      <div class="flow-step"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.55 1 1.3 1 2.1V16h6v-.4c0-.8.4-1.55 1-2.1A6 6 0 0 0 12 3z"/></svg></span><strong>Мысль</strong></div>
       <span class="flow-arrow">→</span>
-      <div class="flow-step"><span class="icon">🤸</span><strong>Движение</strong></div>
+      <div class="flow-step"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><strong>Движение</strong></div>
       <span class="flow-arrow">→</span>
-      <div class="flow-step"><span class="icon">🎨</span><strong>Творчество</strong></div>
+      <div class="flow-step"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.6-.38-.99 0-.83.67-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.42-4.03-8-9-8z"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="10.5" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="10.5" r="1" fill="currentColor" stroke="none"/></svg></span><strong>Творчество</strong></div>
     </div>
 
     <div class="stat-row">
@@ -319,22 +320,179 @@
 
     <div class="approach-grid">
       <div class="approach-item">
-        <span class="approach-icon">🎲</span>
+        <span class="approach-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg></span>
         <div><h3>Игровые методики</h3><p>+ наглядные материалы, через которые ребёнку легко и интересно усваивать новое.</p></div>
       </div>
       <div class="approach-item">
-        <span class="approach-icon">👶</span>
+        <span class="approach-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2"/><circle cx="12" cy="14" r="2.6"/><circle cx="19" cy="10" r="3.2"/></svg></span>
         <div><h3>Группы по возрастам</h3><p>3–4, 4–5 и 5–6 лет — программа и темп подобраны под конкретный возраст.</p></div>
       </div>
       <div class="approach-item">
-        <span class="approach-icon">🔄</span>
+        <span class="approach-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v5h5M20 20v-5h-5"/><path d="M4.6 15a8 8 0 0 0 13.8 3.4M19.4 9A8 8 0 0 0 5.6 5.6"/></svg></span>
         <div><h3>Динамичная смена активностей</h3><p>Мысль → движение → творчество — ребёнок не устаёт и не теряет интерес.</p></div>
       </div>
       <div class="approach-item">
-        <span class="approach-icon">📌</span>
+        <span class="approach-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/><polyline points="9 13 11 15 15 11"/></svg></span>
         <div><h3>Обратная связь для родителей</h3><p>Понятные домашние задания и регулярные отчёты о прогрессе ребёнка.</p></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     TEACHERS
+     ========================================================================== -->
+<section id="teachers">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow eyebrow-onblue">НАША КОМАНДА</span>
+      <h2>Опытные педагоги, работающие по системе</h2>
+    </div>
+
+    <div class="grid grid-3">
+
+      <div class="teacher-card">
+        <div class="teacher-photo">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-anna.avif">
+            <source type="image/webp" srcset="images/teacher-anna.webp">
+            <img src="images/teacher-anna.jpg" alt="Анна Михайловна — основатель центра, логопед" loading="lazy">
+          </picture>
+        </div>
+        <div class="teacher-info">
+          <h3>Анна Михайловна</h3>
+          <div class="teacher-role">Основатель центра, логопед, психолог</div>
+        </div>
+      </div>
+
+      <div class="teacher-card">
+        <div class="teacher-photo">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-saltanat.avif">
+            <source type="image/webp" srcset="images/teacher-saltanat.webp">
+            <img src="images/teacher-saltanat.jpg" alt="Салтанат Есендыковна — педагог" loading="lazy">
+          </picture>
+        </div>
+        <div class="teacher-info">
+          <h3>Салтанат Есендыковна</h3>
+          <div class="teacher-role">Педагог по подготовке к школе и казахского языка</div>
+        </div>
+      </div>
+
+      <div class="teacher-card">
+        <div class="teacher-photo">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-olga.avif">
+            <source type="image/webp" srcset="images/teacher-olga.webp">
+            <img src="images/teacher-olga.jpg" alt="Ольга Викторовна — педагог" loading="lazy">
+          </picture>
+        </div>
+        <div class="teacher-info">
+          <h3>Ольга Викторовна</h3>
+          <div class="teacher-role">Педагог</div>
+        </div>
+      </div>
+
+      <div class="teacher-card">
+        <div class="teacher-photo">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-tatyana.avif">
+            <source type="image/webp" srcset="images/teacher-tatyana.webp">
+            <img src="images/teacher-tatyana.jpg" alt="Татьяна Николаевна — логопед-дефектолог" loading="lazy">
+          </picture>
+        </div>
+        <div class="teacher-info">
+          <h3>Татьяна Николаевна</h3>
+          <div class="teacher-role">Логопед-дефектолог</div>
+        </div>
+      </div>
+
+      <div class="teacher-card">
+        <div class="teacher-photo">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-anastasia.avif">
+            <source type="image/webp" srcset="images/teacher-anastasia.webp">
+            <img src="images/teacher-anastasia.jpg" alt="Анастасия Олеговна — педагог изостудии" loading="lazy">
+          </picture>
+        </div>
+        <div class="teacher-info">
+          <h3>Анастасия Олеговна</h3>
+          <div class="teacher-role">Педагог изостудии</div>
+        </div>
+      </div>
+
+      <div class="teacher-card">
+        <div class="teacher-photo">
+          <picture>
+            <source type="image/avif" srcset="images/teacher-aidyn.avif">
+            <source type="image/webp" srcset="images/teacher-aidyn.webp">
+            <img src="images/teacher-aidyn.jpg" alt="Мисс Айдын — педагог английского языка" loading="lazy">
+          </picture>
+        </div>
+        <div class="teacher-info">
+          <h3>Мисс Айдын</h3>
+          <div class="teacher-role">Педагог английского языка</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     WHY US
+     ========================================================================== -->
+<section id="why-us" class="blob-decor">
+  <div class="blob blob-a" aria-hidden="true"></div>
+  <div class="blob blob-b" aria-hidden="true"></div>
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow eyebrow-onblue">5 ПРИЧИН ВЫБРАТЬ «ТРОПИНКУ»</span>
+      <h2>Почему мы?</h2>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="trust-card">
+        <div class="icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5c-1.5-1.3-3.6-2-6-2-1 0-2 .13-3 .4v13.1c1-.27 2-.4 3-.4 2.4 0 4.5.7 6 2m0-13.1c1.5-1.3 3.6-2 6-2 1 0 2 .13 3 .4v13.1c-1-.27-2-.4-3-.4-2.4 0-4.5.7-6 2m0-13.1v13.1"/></svg></div>
+        <div>
+          <h3>Программа «Вундеркиндики»</h3>
+          <p>При создании программы использовались более 100 источников, в которые входят как классические концепции детских методик, так и новаторские.</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c.9 1 2.1 1.6 3.5 1.6s2.6-.6 3.5-1.6"/><circle cx="9" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+        <div>
+          <h3>Обучение без стресса</h3>
+          <p>Игра + практические упражнения: чтение, письмо и счёт <mark class="hl hl-green">даются легко и с интересом</mark>.</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 0-1-1v-1a2 2 0 0 0-4 0v1a1 1 0 0 0-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a2 2 0 0 0 0-4H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg></div>
+        <div>
+          <h3>Комплексный подход</h3>
+          <p>Программа «Вундеркиндики» развивает ребёнка комплексно: речь, мышление, память, внимание, логику, мелкую моторику и творческие способности.</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a2 2 0 0 0 0 4h1M16 5h3a2 2 0 0 1 0 4h-1"/><path d="M10 13v2M14 13v2"/><path d="M8 20h8M9 17h6l.5 3H8.5z"/></svg></div>
+        <div>
+          <h3>Опытные педагоги</h3>
+          <p>Занятия ведут специалисты с большим стажем, умеющие находить подход к каждому ребёнку.</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/><polyline points="9 13 11 15 15 11"/></svg></div>
+        <div>
+          <h3>Удобно родителям</h3>
+          <p>Чёткий план занятий, обратная связь и понятные домашние задания.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center why-us-address">
+      <a class="hero-trust-chip" href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;margin-right:2px"><path d="M12 21s-7-6.2-7-11.5C5 5.9 8.1 3 12 3s7 2.9 7 6.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg> Наш адрес: г. Алматы, ЖК «Дуэт», ул. Мустафина, 35а →
+      </a>
+    </p>
   </div>
 </section>
 
@@ -344,9 +502,8 @@
 <section id="programs">
   <div class="container">
     <div class="section-head center">
-      <span class="eyebrow eyebrow-onblue">НАПРАВЛЕНИЯ И ЦЕНЫ</span>
-      <h2>Выберите формат для вашего ребёнка</h2>
-      <p class="on-blue-muted">Стоимость зависит от частоты посещения. Пробное занятие перед записью — 4 000 ₸.</p>
+      <h2>НАПРАВЛЕНИЯ И ЦЕНЫ</h2>
+      <p class="on-blue-muted">Выберите формат для вашего ребёнка</p>
       <a class="btn btn-ghost-invert price-download" href="files/tropinka-price-list.pdf" download="Прайс-лист Тропинка 2026-2027.pdf">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M4 19h16"/></svg>
         Скачать прайс-лист (PDF)
@@ -425,7 +582,9 @@
         </div>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Чтение, счёт и письмо — без домашних зубрёжек</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Адаптация под казахстанские стандарты</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>20 тем по познанию мира</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Логика, казахский язык, английский язык</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Выдача портфолио и дипломов</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Обратная связь и понятные домашние задания</li>
         </ul>
         <div class="price-tiers">
@@ -452,24 +611,20 @@
     <div class="grid grid-2">
       <div class="program-card">
         <h3>Логопед</h3>
-        <div class="program-meta"><span>Индивидуально и в группе</span><span>По договорённости</span></div>
-        <p>Работа с речью в том же здании — без отдельной поездки к частному специалисту.</p>
+        <div class="program-meta"><span>Индивидуально и в группе</span></div>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Постановка и автоматизация звуков</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Развитие связной речи и словарного запаса</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Можно как отдельно, так и вместе с подготовкой к школе</li>
         </ul>
         <div class="program-price">6 000 ₸<span class="period"> / занятие</span></div>
         <a class="btn btn-secondary btn-block wa-cta" data-msg="Здравствуйте! Хочу записаться к логопеду в «Тропинке». Подскажите свободное время." href="#">Записаться к логопеду</a>
       </div>
       <div class="program-card">
         <h3>Изостудия «Рисовашки»</h3>
-        <div class="program-meta"><span>13:00–14:00, Вт–Чт</span><span>В здании центра</span></div>
-        <p>Творческое развитие и художественный вкус — как отдельное направление или дополнение к подготовке.</p>
+        <div class="program-meta"><span>13:00–14:00, Вт, Чт</span><span>В здании центра</span></div>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Рисование, лепка и работа с разными материалами</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Развитие мелкой моторики и художественного вкуса</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Готовые работы забираете домой</li>
         </ul>
         <div class="price-tiers">
           <div class="price-tier price-tier-main price-tier-2col">
@@ -489,65 +644,11 @@
 </section>
 
 <!-- ==========================================================================
-     WHY US
-     ========================================================================== -->
-<section id="why-us">
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow eyebrow-onblue">5 ПРИЧИН ВЫБРАТЬ ТРОПИНКУ</span>
-      <h2>Почему мы?</h2>
-    </div>
-
-    <div class="grid grid-2">
-      <div class="trust-card">
-        <div class="icon-wrap">📖</div>
-        <div>
-          <h3>Программа «Вундеркиндики»</h3>
-          <p>Материалы и методики адаптированы под казахстанские стандарты и реальную школьную программу: ребёнку легче стартовать и показывать высокие результаты.</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="icon-wrap">😊</div>
-        <div>
-          <h3>Обучение без стресса</h3>
-          <p>Игра + практические упражнения: чтение, письмо и счёт заходят легко и с интересом.</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="icon-wrap">🧩</div>
-        <div>
-          <h3>Комплексный подход</h3>
-          <p>Помимо подготовки к школе, у нас есть изостудия и логопед — развиваем и академику, и речь, и творчество.</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="icon-wrap">🏆</div>
-        <div>
-          <h3>Опытные педагоги</h3>
-          <p>Занятия ведут специалисты с большим стажем, умеющие находить подход к каждому ребёнку.</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="icon-wrap">📌</div>
-        <div>
-          <h3>Удобно родителям</h3>
-          <p>Чёткий план занятий, обратная связь и понятные домашние задания.</p>
-        </div>
-      </div>
-    </div>
-
-    <p class="text-center why-us-address">
-      <a class="hero-trust-chip" href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">
-        📍 Наш адрес: г. Алматы, ЖК Дуэт, ул. Мустафина, 35а →
-      </a>
-    </p>
-  </div>
-</section>
-
-<!-- ==========================================================================
      REVIEWS
      ========================================================================== -->
-<section id="reviews">
+<section id="reviews" class="blob-decor">
+  <div class="blob blob-a" aria-hidden="true"></div>
+  <div class="blob blob-b" aria-hidden="true"></div>
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow eyebrow-onblue">ОТЗЫВЫ РОДИТЕЛЕЙ</span>
@@ -617,111 +718,6 @@
 </section>
 
 <!-- ==========================================================================
-     TEACHERS
-     ========================================================================== -->
-<section id="teachers">
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow eyebrow-onblue">НАША КОМАНДА</span>
-      <h2>Опытные педагоги, работающие по системе</h2>
-    </div>
-
-    <div class="grid grid-3">
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <picture>
-            <source type="image/avif" srcset="images/teacher-anna.avif">
-            <source type="image/webp" srcset="images/teacher-anna.webp">
-            <img src="images/teacher-anna.jpg" alt="Анна Михайловна — основатель центра, логопед" loading="lazy">
-          </picture>
-        </div>
-        <div class="teacher-info">
-          <h3>Анна Михайловна</h3>
-          <div class="teacher-role">Основатель центра, логопед</div>
-          <p>Стояла у истоков центра и продолжает вести логопедические занятия.</p>
-        </div>
-      </div>
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <picture>
-            <source type="image/avif" srcset="images/teacher-anastasia.avif">
-            <source type="image/webp" srcset="images/teacher-anastasia.webp">
-            <img src="images/teacher-anastasia.jpg" alt="Анастасия Олеговна — педагог изостудии" loading="lazy">
-          </picture>
-        </div>
-        <div class="teacher-info">
-          <h3>Анастасия Олеговна</h3>
-          <div class="teacher-role">Педагог изостудии</div>
-          <p>Развивает моторику и творческое мышление. Стаж — более 10 лет.</p>
-        </div>
-      </div>
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <picture>
-            <source type="image/avif" srcset="images/teacher-tatyana.avif">
-            <source type="image/webp" srcset="images/teacher-tatyana.webp">
-            <img src="images/teacher-tatyana.jpg" alt="Татьяна Николаевна — логопед-дефектолог" loading="lazy">
-          </picture>
-        </div>
-        <div class="teacher-info">
-          <h3>Татьяна Николаевна</h3>
-          <div class="teacher-role">Логопед-дефектолог</div>
-          <p>Работает над речью и звуками. Стаж — более 20 лет.</p>
-        </div>
-      </div>
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <picture>
-            <source type="image/avif" srcset="images/teacher-aidyn.avif">
-            <source type="image/webp" srcset="images/teacher-aidyn.webp">
-            <img src="images/teacher-aidyn.jpg" alt="Мисс Айдын — педагог английского языка" loading="lazy">
-          </picture>
-        </div>
-        <div class="teacher-info">
-          <h3>Мисс Айдын</h3>
-          <div class="teacher-role">Педагог английского языка</div>
-          <p>Знакомит детей с английским в игровой форме. Стаж — более 5 лет.</p>
-        </div>
-      </div>
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <picture>
-            <source type="image/avif" srcset="images/teacher-olga.avif">
-            <source type="image/webp" srcset="images/teacher-olga.webp">
-            <img src="images/teacher-olga.jpg" alt="Ольга Викторовна — педагог" loading="lazy">
-          </picture>
-        </div>
-        <div class="teacher-info">
-          <h3>Ольга Викторовна</h3>
-          <div class="teacher-role">Педагог</div>
-          <p>Ведёт занятия по методике «Вундеркиндики». Стаж — более 25 лет.</p>
-        </div>
-      </div>
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <picture>
-            <source type="image/avif" srcset="images/teacher-saltanat.avif">
-            <source type="image/webp" srcset="images/teacher-saltanat.webp">
-            <img src="images/teacher-saltanat.jpg" alt="Салтанат Есендыковна — педагог" loading="lazy">
-          </picture>
-        </div>
-        <div class="teacher-info">
-          <h3>Салтанат Есендыковна</h3>
-          <div class="teacher-role">Педагог</div>
-          <p>Учит детей читать, писать и считать. Стаж — более 25 лет.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==========================================================================
      INSTAGRAM TEASER
      ========================================================================== -->
 <section class="insta-section" id="gallery">
@@ -761,14 +757,14 @@
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow eyebrow-onblue">ГДЕ МЫ НАХОДИМСЯ</span>
-      <h2>ЖК Дуэт, ул. Мустафина, 35а</h2>
+      <h2>ЖК «Дуэт», ул. Мустафина, 35а</h2>
     </div>
 
     <div class="location-grid">
       <div class="location-map">
         <iframe
           src="https://www.openstreetmap.org/export/embed.html?bbox=76.8673%2C43.2010%2C76.8873%2C43.2090&layer=mapnik&marker=43.205039%2C76.87732"
-          title="Карта: Тропинка, ЖК Дуэт, ул. Мустафина, 35а, Алматы"
+          title="Карта: «Тропинка», ЖК «Дуэт», ул. Мустафина, 35а, Алматы"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
@@ -777,17 +773,17 @@
       <div class="location-info">
         <div class="location-row">
           <div class="icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sea-dark)" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5C5 5.9 8.1 3 12 3s7 2.9 7 6.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5C5 5.9 8.1 3 12 3s7 2.9 7 6.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
           </div>
           <div>
             <h3>Адрес</h3>
-            <p>г. Алматы, ЖК Дуэт, ул. Мустафина, 35а</p>
+            <p>г. Алматы, ЖК «Дуэт», ул. Мустафина, 35а</p>
           </div>
         </div>
 
         <div class="location-row">
           <div class="icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sea-dark)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
           <div>
             <h3>Связаться</h3>
@@ -796,7 +792,7 @@
         </div>
 
         <div class="location-row">
-          <div class="icon-wrap">⭐</div>
+          <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg></div>
           <div>
             <h3>Репутация</h3>
             <p>5.0 из 5, 57 отзывов на 2ГИС</p>
@@ -804,7 +800,7 @@
         </div>
 
         <div class="location-actions">
-          <a class="btn btn-primary wa-cta" data-msg="Здравствуйте! Подскажите, как к вам удобнее добраться в ЖК Дуэт?" href="#">Записаться на пробное</a>
+          <a class="btn btn-primary wa-cta" data-msg="Здравствуйте! Подскажите, как к вам удобнее добраться в ЖК «Дуэт»?" href="#">Записаться на пробное</a>
           <a class="btn btn-ghost" href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">Открыть в 2ГИС</a>
         </div>
       </div>
@@ -842,14 +838,14 @@
         </div>
 
         <div class="form-row">
-          <label for="childAge">Возраст ребёнка</label>
+          <label for="childAge">Интересует</label>
           <select id="childAge" name="childAge" required>
-            <option value="" disabled selected>Выберите возраст</option>
-            <option value="3–4 года («Хочу всё знать»)">3–4 года («Хочу всё знать»)</option>
-            <option value="4–5 лет (подготовка к школе, 1 ступенька)">4–5 лет (подготовка к школе, 1 ступенька)</option>
-            <option value="5–6 лет (подготовка к школе, 2 ступенька)">5–6 лет (подготовка к школе, 2 ступенька)</option>
-            <option value="Логопед">Интересует логопед</option>
-            <option value="Изостудия">Интересует изостудия</option>
+            <option value="" disabled selected>Выберите вариант</option>
+            <option value="3–4 года («Хочу всё знать»)">3–4 года «Хочу всё знать»</option>
+            <option value="4–5 лет («Подготовка к школе», 1 ступень)">4–5 лет «Подготовка к школе», 1 ступень</option>
+            <option value="5–6 лет («Подготовка к школе», 2 ступень)">5–6 лет «Подготовка к школе», 2 ступень</option>
+            <option value="Логопед">Логопед</option>
+            <option value="Изостудия «Рисовашки»">Изостудия «Рисовашки»</option>
           </select>
         </div>
 
@@ -898,11 +894,11 @@
           <picture>
             <source type="image/avif" srcset="images/logo.avif">
             <source type="image/webp" srcset="images/logo.webp">
-            <img src="images/logo.png" alt="Тропинка" width="48" height="48">
+            <img src="images/logo.png" alt="«Тропинка»" width="48" height="48">
           </picture>
-          Тропинка
+          «Тропинка»
         </div>
-        <p class="footer-about">Центр раннего развития и подготовки к школе в Алматы. Работаем по программе «Вундеркиндики», адаптированной под стандарты РК.</p>
+        <p class="footer-about">Детский Центр «Тропинка» в Алматы. Работаем по программе «Вундеркиндики».</p>
       </div>
 
       <div class="footer-col">
@@ -910,9 +906,10 @@
         <ul>
           <li><a href="#about">О нас</a></li>
           <li><a href="#how-it-works">Как проходит занятие</a></li>
-          <li><a href="#programs">Цены</a></li>
-          <li><a href="#reviews">Отзывы</a></li>
           <li><a href="#teachers">Педагоги</a></li>
+          <li><a href="#why-us">Почему мы?</a></li>
+          <li><a href="#programs">Прайс</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
           <li><a href="#location">Адрес</a></li>
         </ul>
       </div>
@@ -922,7 +919,7 @@
         <ul>
           <li><a class="wa-cta" data-msg="Здравствуйте! Хочу узнать подробнее о центре «Тропинка»." href="#">+7 777 196 09 89</a></li>
           <li><a href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">Страница на 2ГИС</a></li>
-          <li><a href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">г. Алматы, ЖК Дуэт, ул. Мустафина, 35а</a></li>
+          <li><a href="https://go.2gis.com/hM5Co" target="_blank" rel="noopener">г. Алматы, ЖК «Дуэт», ул. Мустафина, 35а</a></li>
         </ul>
       </div>
 
@@ -946,7 +943,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>© <span id="year"></span> Тропинка. Все права защищены.</span>
+      <span>© <span id="year"></span> «Тропинка». Все права защищены.</span>
       <span>15 лет работы · 5.0 на 2ГИС</span>
     </div>
   </div>

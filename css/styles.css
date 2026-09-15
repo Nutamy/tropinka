@@ -1,4 +1,113 @@
 /* ==========================================================================
+   Self-hosted fonts (Comfortaa, Nunito) — previously loaded from Google
+   Fonts' CDN via a <link>; self-hosting removes that third-party network
+   dependency entirely (no request ever leaves the visitor's browser other
+   than to this site), which is what actually fixes "font sometimes doesn't
+   load / silently falls back to a system sans" — a request to a
+   third-party CDN can be slow, blocked, or dropped on any given visit for
+   reasons entirely outside this site's control, and every prior visit that
+   worked was just luck. Split cyrillic/latin files (matches how Google
+   Fonts itself serves this pair) so a Cyrillic-only page never fetches the
+   latin-only glyphs it doesn't use, and vice-versa.
+   ========================================================================== */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/comfortaa-cyrillic-600-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/comfortaa-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/comfortaa-cyrillic-700-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/comfortaa-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/nunito-cyrillic-400-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/nunito-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/nunito-cyrillic-600-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/nunito-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/nunito-cyrillic-700-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/nunito-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../fonts/nunito-cyrillic-800-normal.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../fonts/nunito-latin-800-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ==========================================================================
    ТРОПИНКА — UI Kit tokens (official palette, one color = one role)
    Source: project doc "Стратегия — маркетинг, хуки и UI Kit"
    Design system reference: Impeccable (pbakaus/impeccable)
@@ -46,6 +155,20 @@
      icon fills) — these exist only for when that hue has to render as text. */
   --sun-dark: #8A6800;    /* star ratings, on-blue small labels */
   --green-text: #1B783A; /* "Есть места" badge, verified checkmark, form success */
+  --sky-dark: #1D7CA3;    /* text-safe sky — icons/labels on pale sky tints */
+
+  /* Pastel tints — same 8 rotating hues, mixed ~90% into white. Used for
+     sticker eyebrows, icon badges and section washes that want to read as
+     "warm and juicy" rather than sterile white, without introducing any
+     color outside the official palette. */
+  --sun-tint: #FFF3C6;
+  --orange-tint: #FDE4D6;
+  --raspberry-tint: #FBDCEC;
+  --green-tint: #DDF3E3;
+  --sea-tint: #D9F1F1;
+  --plum-tint: #F1E1F1;
+  --olive-tint: #EEF2DA;
+  --sky-tint: #E1F4FC;
 }
 
 /* ==========================================================================
@@ -93,6 +216,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
+/* `picture` has no intrinsic box of its own; inside a flex/grid parent it
+   can collapse to 0 width when the `img` inside sizes itself with a
+   percentage (this is what was squashing the header logo). `display:
+   contents` removes the wrapper from layout entirely so the `img` becomes
+   the real flex/grid item and sizes itself exactly as if `picture` were
+   not there — safe everywhere on this site since no rule targets
+   `picture` directly. */
+picture { display: contents; }
 a { color: inherit; text-decoration: none; }
 ul { margin: 0; padding: 0; list-style: none; }
 button { font-family: inherit; cursor: pointer; }
@@ -112,18 +243,34 @@ h3 { font-weight: 600; font-size: 20px; line-height: 1.3; }
 }
 
 p { margin: 0 0 12px; }
+/* Eyebrow reads as a little sticker/tag rather than plain uppercase label —
+   pill shape, its own pastel tint, a very slight tilt for a playful,
+   hand-placed feel. Color is set per-section below (falls back to
+   sea-dark/sea-tint here so nothing is unstyled if a section is added
+   without a specific rule). */
 .eyebrow {
+  display: inline-block;
   font-family: var(--font-body);
   font-weight: 800;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.4;
   letter-spacing: 0.02em;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+  transform: rotate(-1.6deg);
+  background: var(--sea-tint);
+  color: var(--sea-dark);
 }
-/* Section eyebrow / intro-paragraph color, used at the top of every content
-   section. Kept as its own class (name aside) rather than duplicated
-   per-section: dark teal reads at 7.6:1 on white/surface — the label no
-   longer needs to survive on a colored background, only look branded. */
-.eyebrow-onblue { color: var(--sea-dark) !important; }
+.eyebrow-onblue { color: var(--sea-dark); background: var(--sea-tint); }
+#about .eyebrow { background: var(--sun-tint); color: var(--sun-dark); }
+#how-it-works .eyebrow { background: var(--orange-tint); color: var(--orange); transform: rotate(1.4deg); }
+#teachers .eyebrow { background: var(--raspberry-tint); color: var(--raspberry); }
+#why-us .eyebrow { background: var(--green-tint); color: var(--green-text); transform: rotate(1.4deg); }
+#reviews .eyebrow { background: var(--sea-tint); color: var(--sea-dark); }
+#gallery .eyebrow { background: var(--olive-tint); color: var(--olive); transform: rotate(1.4deg); }
+#location .eyebrow { background: var(--sky-tint); color: var(--sky-dark); }
+.section-head.center .eyebrow { transform: rotate(-1.6deg); }
 .on-blue-muted { color: var(--text-secondary) !important; }
 .section-head .on-blue-muted { margin-top: 12px; }
 .caption {
@@ -134,6 +281,22 @@ p { margin: 0 0 12px; }
   color: var(--text-secondary);
 }
 
+/* Highlighter-marker effect for a key phrase inside a paragraph — a swipe
+   of pastel color behind the lower ~55% of the text, like a real
+   highlighter pen, instead of a full pill/background. `box-decoration-break`
+   keeps the swipe looking right if the phrase wraps onto two lines. */
+mark.hl {
+  background: none;
+  background-image: linear-gradient(180deg, transparent 56%, var(--hl-color, var(--sun-tint)) 56%);
+  color: inherit;
+  padding: 0 3px;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+mark.hl-sun { --hl-color: var(--sun-tint); }
+mark.hl-green { --hl-color: var(--green-tint); }
+
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
@@ -143,15 +306,33 @@ p { margin: 0 0 12px; }
 section { padding: 64px 0; }
 @media (min-width: 960px) { section { padding: 96px 0; } }
 
+/* Soft organic blobs — large, heavily blurred pastel circles sitting behind
+   a section's content, purely decorative (aria-hidden, no text/meaning) and
+   low-opacity enough that body text keeps its usual contrast on top. Takes
+   the "sterile" edge off a plain white section without adding visual noise:
+   still just the palette's own pastel tints, nothing new. */
+.blob-decor { position: relative; overflow: hidden; }
+.blob-decor > .container { position: relative; z-index: 1; }
+.blob { position: absolute; border-radius: 50%; filter: blur(50px); pointer-events: none; z-index: 0; opacity: 0.55; }
+.blob-a { width: 320px; height: 320px; top: -140px; left: -90px; }
+.blob-b { width: 260px; height: 260px; bottom: -110px; right: -70px; }
+@media (max-width: 640px) {
+  .blob-a { width: 220px; height: 220px; top: -90px; left: -80px; }
+  .blob-b { width: 180px; height: 180px; bottom: -70px; right: -60px; }
+}
+#about .blob-a { background: var(--sun-tint); }
+#about .blob-b { background: var(--orange-tint); }
+#why-us .blob-a { background: var(--green-tint); }
+#why-us .blob-b { background: var(--sea-tint); }
+#reviews .blob-a { background: var(--sky-tint); }
+#reviews .blob-b { background: var(--plum-tint); }
+
 .section-head {
   max-width: 640px;
   margin: 0 0 40px;
 }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
 
-/* Alternating section ground — white / barely-tinted surface — so sections
-   separate from each other by a visual rhythm instead of by shadow, and so
-   the sky-blue stays a hero/footer accent instead of a sitewide backdrop. */
 #how-it-works, #why-us, #teachers, #location { background: var(--surface); }
 
 /* ==========================================================================
@@ -176,20 +357,24 @@ section { padding: 64px 0; }
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 .btn:active { transform: scale(0.97); }
+/* A little lift on hover on top of each variant's own colored shadow below
+   — makes the CTAs feel closer to "pressable объём" than a flat tint. */
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.97); }
 
 .btn-primary {
   background: var(--sun);
   color: var(--ink);
   box-shadow: var(--shadow-sun);
 }
-.btn-primary:hover { background: #FFDA52; }
+.btn-primary:hover { background: #FFDA52; box-shadow: 0 14px 26px -10px rgba(214, 164, 0, 0.95); }
 
 .btn-secondary {
   background: var(--sea);
   color: var(--white);
   box-shadow: var(--shadow-sea);
 }
-.btn-secondary:hover { background: #24A3A4; }
+.btn-secondary:hover { background: #24A3A4; box-shadow: 0 22px 44px -20px rgba(31, 143, 144, 0.65); }
 
 .btn-ghost {
   background: transparent;
@@ -199,6 +384,22 @@ section { padding: 64px 0; }
   padding: 15px 28px;
 }
 .btn-ghost:hover { border-color: var(--sea); }
+
+/* One-off hero CTA colors, requested specifically for the two first-screen
+   buttons (not a sitewide role like the other .btn-* variants above). */
+.btn-purple {
+  background: var(--plum);
+  color: var(--white);
+  box-shadow: 0 18px 40px -22px rgba(128, 47, 128, 0.55);
+}
+.btn-purple:hover { background: #6B2569; box-shadow: 0 22px 46px -20px rgba(128, 47, 128, 0.65); }
+
+.btn-green {
+  background: var(--green);
+  color: var(--white);
+  box-shadow: 0 18px 40px -22px rgba(47, 160, 80, 0.55);
+}
+.btn-green:hover { background: #268A46; box-shadow: 0 22px 46px -20px rgba(47, 160, 80, 0.65); }
 
 .btn-block { width: 100%; }
 .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
@@ -273,16 +474,16 @@ section { padding: 64px 0; }
 .nav-links {
   display: none;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
 }
 .nav-links a {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--ink);
   white-space: nowrap;
 }
 .nav-links a:hover { color: var(--sea-dark); }
-.header-actions { display: flex; align-items: center; gap: 12px; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
 .header-phone {
   display: none;
   font-family: var(--font-body);
@@ -368,6 +569,14 @@ section { padding: 64px 0; }
    for a second tone that still clears 4:1+ at this large, bold size. */
 .hero h1 { color: var(--ink); margin-bottom: 20px; }
 .hero h1 .accent { color: var(--sea-dark); }
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .hero h1 .accent {
+    background: linear-gradient(100deg, var(--plum) 0%, var(--sea-dark) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
 .hero-sub {
   font-size: 18px;
   color: var(--ink);
@@ -431,6 +640,24 @@ section { padding: 64px 0; }
 }
 .btn-ghost-invert:hover { background: rgba(59, 42, 74, 0.08); border-color: var(--ink); }
 
+/* Mobile is the priority breakpoint for this hero: on common phone
+   viewports (iPhone SE up through standard 390-430px phones) the goal is
+   for the whole hero — trust chips, heading, both CTAs, address, photo —
+   to read as one screen without scrolling. Every dimension below is
+   trimmed a notch versus the desktop values above; nothing is hidden. */
+@media (max-width: 719px) {
+  .hero { padding: 20px 0 28px; }
+  .hero-grid { gap: 18px; }
+  .hero-trust-row { gap: 6px; margin-bottom: 14px; }
+  .hero-trust-chip { font-size: 12px; padding: 8px 14px; }
+  .hero h1 { font-size: 26px; line-height: 1.2; margin-bottom: 14px; }
+  .hero-cta-row { gap: 10px; margin-bottom: 12px; }
+  .hero-cta-row .btn { padding: 13px 20px; font-size: 12px; }
+  .hero-address { margin-top: 10px; font-size: 12px; }
+  .hero-media { max-width: 300px; margin: 0 auto; }
+  .hero-media-card { padding: 8px; }
+}
+
 /* ==========================================================================
    Cards grid — generic
    ========================================================================== */
@@ -484,10 +711,32 @@ section { padding: 64px 0; }
   margin: 0 auto 20px;
 }
 
+.sparkle { display: inline-block; vertical-align: -2px; flex-shrink: 0; }
+.develop-title .sparkle { vertical-align: -3px; margin: 0 2px; }
+
+.develop-section {
+  background: linear-gradient(160deg, #FFFBF0 0%, #FFF3E4 55%, #FDECDD 100%);
+  border-radius: var(--radius-card-lg);
+  padding: 36px 20px;
+}
+@media (min-width: 640px) { .develop-section { padding: 44px 36px; } }
 .develop-title {
-  color: var(--ink);
+  font-size: 22px;
   text-align: center;
   margin-bottom: 24px;
+  color: var(--plum);
+}
+/* Sochnyy gradient-text accent — matches the develop-icon warm hues
+   without introducing a new color outside the palette. Gated behind
+   @supports so a browser without background-clip:text keeps the solid
+   --plum fallback above instead of invisible (transparent) text. */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .develop-title {
+    background: linear-gradient(100deg, var(--plum) 0%, var(--sea-dark) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 .develop-grid {
   display: grid;
@@ -508,7 +757,19 @@ section { padding: 64px 0; }
   font-weight: 700;
   font-size: 14px;
   color: var(--ink);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
+/* Card shadow tinted to match its own icon instead of flat gray — same
+   accent, much lower opacity/larger blur than the badge's own shadow so it
+   reads as "this card's light" rather than a duplicate of the icon. */
+.develop-item:nth-child(8n+1) { box-shadow: 0 16px 34px -26px rgba(29,124,163,0.7), var(--shadow-card); }
+.develop-item:nth-child(8n+2) { box-shadow: 0 16px 34px -26px rgba(138,104,0,0.7), var(--shadow-card); }
+.develop-item:nth-child(8n+3) { box-shadow: 0 16px 34px -26px rgba(192,32,128,0.6), var(--shadow-card); }
+.develop-item:nth-child(8n+4) { box-shadow: 0 16px 34px -26px rgba(143,163,63,0.6), var(--shadow-card); }
+.develop-item:nth-child(8n+5) { box-shadow: 0 16px 34px -26px rgba(240,112,47,0.6), var(--shadow-card); }
+.develop-item:nth-child(8n+6) { box-shadow: 0 16px 34px -26px rgba(47,160,80,0.6), var(--shadow-card); }
+.develop-item:nth-child(8n+7) { box-shadow: 0 16px 34px -26px rgba(128,47,128,0.55), var(--shadow-card); }
+.develop-item:nth-child(8n+8) { box-shadow: 0 16px 34px -26px rgba(31,143,144,0.6), var(--shadow-card); }
 .develop-icon {
   width: 56px;
   height: 56px;
@@ -516,16 +777,17 @@ section { padding: 64px 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  box-shadow: inset 0 -3px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
-.develop-item:nth-child(8n+1) .develop-icon { background: rgba(106,198,237,0.28); }
-.develop-item:nth-child(8n+2) .develop-icon { background: rgba(255,210,51,0.35); }
-.develop-item:nth-child(8n+3) .develop-icon { background: rgba(192,32,128,0.14); }
-.develop-item:nth-child(8n+4) .develop-icon { background: rgba(143,163,63,0.2); }
-.develop-item:nth-child(8n+5) .develop-icon { background: rgba(240,112,47,0.16); }
-.develop-item:nth-child(8n+6) .develop-icon { background: rgba(47,160,80,0.16); }
-.develop-item:nth-child(8n+7) .develop-icon { background: rgba(128,47,128,0.14); }
-.develop-item:nth-child(8n+8) .develop-icon { background: rgba(31,143,144,0.16); }
+.develop-icon svg { stroke-width: 2.1; }
+.develop-item:nth-child(8n+1) .develop-icon { background: var(--sky-tint); color: var(--sky-dark); box-shadow: inset 0 -3px 0 rgba(29,124,163,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(29,124,163,0.55); }
+.develop-item:nth-child(8n+2) .develop-icon { background: var(--sun-tint); color: var(--sun-dark); box-shadow: inset 0 -3px 0 rgba(138,104,0,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(138,104,0,0.5); }
+.develop-item:nth-child(8n+3) .develop-icon { background: var(--raspberry-tint); color: var(--raspberry); box-shadow: inset 0 -3px 0 rgba(192,32,128,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(192,32,128,0.5); }
+.develop-item:nth-child(8n+4) .develop-icon { background: var(--olive-tint); color: var(--olive); box-shadow: inset 0 -3px 0 rgba(143,163,63,0.14), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(143,163,63,0.5); }
+.develop-item:nth-child(8n+5) .develop-icon { background: var(--orange-tint); color: var(--orange); box-shadow: inset 0 -3px 0 rgba(240,112,47,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(240,112,47,0.5); }
+.develop-item:nth-child(8n+6) .develop-icon { background: var(--green-tint); color: var(--green-text); box-shadow: inset 0 -3px 0 rgba(27,120,58,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(47,160,80,0.5); }
+.develop-item:nth-child(8n+7) .develop-icon { background: var(--plum-tint); color: var(--plum); box-shadow: inset 0 -3px 0 rgba(128,47,128,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(128,47,128,0.5); }
+.develop-item:nth-child(8n+8) .develop-icon { background: var(--sea-tint); color: var(--sea); box-shadow: inset 0 -3px 0 rgba(31,143,144,0.14), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(31,143,144,0.5); }
 
 /* ==========================================================================
    How a lesson works — timeline
@@ -556,12 +818,16 @@ section { padding: 64px 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
   flex-shrink: 0;
+  box-shadow: inset 0 -2px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
-.flow-step:nth-child(1) .icon { background: rgba(106,198,237,0.25); }
-.flow-step:nth-child(3) .icon { background: rgba(255,210,51,0.35); }
-.flow-step:nth-child(5) .icon { background: rgba(192,32,128,0.14); }
+.flow-step .icon svg { stroke-width: 2.1; }
+.flow-step:nth-child(1) { box-shadow: 0 14px 28px -22px rgba(29,124,163,0.7), var(--shadow-card); }
+.flow-step:nth-child(1) .icon { background: var(--sky-tint); color: var(--sky-dark); }
+.flow-step:nth-child(3) { box-shadow: 0 14px 28px -22px rgba(138,104,0,0.7), var(--shadow-card); }
+.flow-step:nth-child(3) .icon { background: var(--sun-tint); color: var(--sun-dark); }
+.flow-step:nth-child(5) { box-shadow: 0 14px 28px -22px rgba(192,32,128,0.6), var(--shadow-card); }
+.flow-step:nth-child(5) .icon { background: var(--raspberry-tint); color: var(--raspberry); }
 .flow-step strong { font-family: var(--font-display); font-size: 15px; }
 .flow-arrow { color: var(--border); font-size: 22px; }
 
@@ -605,17 +871,25 @@ section { padding: 64px 0; }
   padding: 22px;
   box-shadow: var(--shadow-card);
 }
+.approach-item:nth-child(1) { box-shadow: 0 16px 34px -26px rgba(31,143,144,0.6), var(--shadow-card); }
+.approach-item:nth-child(2) { box-shadow: 0 16px 34px -26px rgba(29,124,163,0.7), var(--shadow-card); }
+.approach-item:nth-child(3) { box-shadow: 0 16px 34px -26px rgba(240,112,47,0.6), var(--shadow-card); }
+.approach-item:nth-child(4) { box-shadow: 0 16px 34px -26px rgba(47,160,80,0.6), var(--shadow-card); }
 .approach-icon {
   flex-shrink: 0;
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: rgba(31,143,144,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  box-shadow: inset 0 -2px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
+.approach-icon svg { stroke-width: 2.1; }
+.approach-item:nth-child(1) .approach-icon { background: var(--sea-tint); color: var(--sea); }
+.approach-item:nth-child(2) .approach-icon { background: var(--sky-tint); color: var(--sky-dark); }
+.approach-item:nth-child(3) .approach-icon { background: var(--orange-tint); color: var(--orange); }
+.approach-item:nth-child(4) .approach-icon { background: var(--green-tint); color: var(--green-text); }
 .approach-item h3 { font-size: 17px; margin-bottom: 4px; }
 .approach-item p { font-size: 14px; color: var(--text-secondary); margin: 0; }
 
@@ -782,17 +1056,27 @@ section { padding: 64px 0; }
   padding: 24px;
   box-shadow: var(--shadow-card);
 }
+.trust-card:nth-child(1) { box-shadow: 0 16px 34px -26px rgba(128,47,128,0.55), var(--shadow-card); }
+.trust-card:nth-child(2) { box-shadow: 0 16px 34px -26px rgba(47,160,80,0.6), var(--shadow-card); }
+.trust-card:nth-child(3) { box-shadow: 0 16px 34px -26px rgba(192,32,128,0.6), var(--shadow-card); }
+.trust-card:nth-child(4) { box-shadow: 0 16px 34px -26px rgba(138,104,0,0.6), var(--shadow-card); }
+.trust-card:nth-child(5) { box-shadow: 0 16px 34px -26px rgba(31,143,144,0.6), var(--shadow-card); }
 .trust-card .icon-wrap {
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  background: rgba(106,198,237,0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
   flex-shrink: 0;
+  box-shadow: inset 0 -2px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
+.trust-card .icon-wrap svg { stroke-width: 2.1; }
+.trust-card:nth-child(1) .icon-wrap { background: var(--plum-tint); color: var(--plum); }
+.trust-card:nth-child(2) .icon-wrap { background: var(--green-tint); color: var(--green-text); }
+.trust-card:nth-child(3) .icon-wrap { background: var(--raspberry-tint); color: var(--raspberry); }
+.trust-card:nth-child(4) .icon-wrap { background: var(--sun-tint); color: var(--sun-dark); }
+.trust-card:nth-child(5) .icon-wrap { background: var(--sea-tint); color: var(--sea); }
 .trust-card h3 { margin-bottom: 6px; }
 .trust-card p { color: var(--text-secondary); margin: 0; }
 
@@ -932,25 +1216,25 @@ section { padding: 64px 0; }
 .bubble-gallery .bubble:nth-child(5n+4) { margin-top: 16px; }
 .bubble-gallery .bubble:nth-child(3n+1) { margin-top: 6px; }
 
-/* Narrow phones: 11 wrapped bubbles of mixed sizes read as clutter at
-   ~375-390px. Below 640px the gallery becomes a snap-scrolling horizontal
-   strip instead — a native, thumb-friendly "swipe through photos" gesture
-   that also satisfies the brief's horizontal-scroll requirement in a place
-   the content genuinely fits it, rather than bolted onto an unrelated
-   section. */
+/* Narrow phones: no horizontal scroll, ever — a fixed 3-column grid
+   instead of the organic scatter. Grid tracks are fr-based, so the row
+   can never exceed the container width regardless of viewport size. */
 @media (max-width: 640px) {
   .bubble-gallery {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    padding: 8px 4px 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 8px 0 16px;
     margin-bottom: 12px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
   }
-  .bubble-gallery .bubble { margin-top: 0 !important; scroll-snap-align: center; }
-  .bubble-lg, .bubble-md, .bubble-sm { width: 132px; height: 132px; }
+  .bubble-gallery .bubble {
+    margin-top: 0 !important;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    justify-self: stretch;
+  }
+  .bubble-lg, .bubble-md, .bubble-sm { width: 100%; height: auto; }
 }
 
 .insta-cta { text-align: center; }
@@ -1032,12 +1316,15 @@ section { padding: 64px 0; }
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  background: rgba(31,143,144,0.14);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: inset 0 -2px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
+.location-row:nth-child(1) .icon-wrap { background: var(--sea-tint); color: var(--sea); }
+.location-row:nth-child(2) .icon-wrap { background: var(--green-tint); color: var(--green-text); }
+.location-row:nth-child(3) .icon-wrap { background: var(--sun-tint); color: var(--sun-dark); }
 .location-row h3 { font-size: 16px; margin-bottom: 2px; }
 .location-row p { color: var(--text-secondary); margin: 0; }
 .location-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
@@ -1228,20 +1515,31 @@ section { padding: 64px 0; }
 }
 @media (min-width: 1200px) { .mobile-menu-btn { display: none; } }
 
-/* Narrow phones (iPhone SE / small Android, ~320-480px): the logo text +
-   "Записаться" button + hamburger no longer fit at their default desktop
-   sizing, so trim them down a notch to avoid horizontal overflow. */
+/* Mobile is the priority breakpoint: below desktop, the logo mark, the
+   wordmark, the CTA and the hamburger are all fighting for the same row,
+   so the wordmark is what gives — its size steps down at every stage
+   below while the round logo mark keeps a fixed, never-shrinking size
+   (flex-shrink: 0 on .logo-mark), so it never gets squeezed. */
+@media (max-width: 719px) {
+  .site-header .container { gap: 10px; height: 76px; }
+  .logo { font-size: 17px; gap: 8px; }
+  .logo-mark { width: 42px; height: 42px; }
+}
+/* Narrow phones (iPhone SE / small Android, ~320-480px): tighten further
+   to avoid horizontal overflow. */
 @media (max-width: 480px) {
   .site-header .container { gap: 8px; height: 72px; }
-  .logo { font-size: 16px; gap: 6px; }
+  .logo { font-size: 14px; gap: 6px; }
   .logo-mark { width: 36px; height: 36px; }
   .header-actions { gap: 6px; }
-  .header-actions .btn-primary { padding: 10px 14px; font-size: 11px; }
+  .header-actions .btn-primary,
+  .header-actions .btn-green { padding: 10px 14px; font-size: 11px; }
   .mobile-menu-btn { width: 36px; height: 36px; }
 }
 @media (max-width: 340px) {
-  .logo span, .logo { font-size: 14px; }
-  .header-actions .btn-primary { padding: 9px 11px; font-size: 10px; }
+  .logo span, .logo { font-size: 12px; }
+  .header-actions .btn-primary,
+  .header-actions .btn-green { padding: 9px 11px; font-size: 10px; }
 }
 @media (max-width: 480px) {
   .mobile-nav { inset: 72px 0 0 0; }
