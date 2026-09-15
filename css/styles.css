@@ -267,6 +267,7 @@ p { margin: 0 0 12px; }
 #how-it-works .eyebrow { background: var(--orange-tint); color: var(--orange); transform: rotate(1.4deg); }
 #teachers .eyebrow { background: var(--raspberry-tint); color: var(--raspberry); }
 #why-us .eyebrow { background: var(--green-tint); color: var(--green-text); transform: rotate(1.4deg); }
+#programs .eyebrow { background: var(--plum-tint); color: var(--plum); }
 #reviews .eyebrow { background: var(--sea-tint); color: var(--sea-dark); }
 #gallery .eyebrow { background: var(--olive-tint); color: var(--olive); transform: rotate(1.4deg); }
 #location .eyebrow { background: var(--sky-tint); color: var(--sky-dark); }
