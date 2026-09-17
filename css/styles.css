@@ -206,13 +206,15 @@ body {
   font-size: 17px;
   line-height: 1.62;
   color: var(--ink);
-  /* Readability fix: the brand sky-blue is a light, high-luminance color
-     (contrast against white text ≈ 1.9:1 — far below the 4.5:1 AA minimum
-     for body text). Per the UI kit's own role table, sky-blue's assigned
-     role is "фон бренда, шапка/хедер" — brand background for the hero and
-     header, not a sitewide canvas. Content sections sit on plain white /
-     a barely-tinted surface instead, so ink text reads at 10–13:1. */
-  background: #FFFFFF;
+  /* Round 20: client wants a blue background across the whole site.
+     Round 7 tried the full-saturation brand blue (--sky, #6AC6ED) as the
+     page canvas and had to revert it — text contrast on it was ≈1.9:1,
+     far below the 4.5:1 AA minimum. `--sky-tint` is the same hue at ~90%
+     white (already used elsewhere for badges/text-safe labels), so it
+     reads clearly as "blue" while keeping ink-on-background contrast at
+     ~9:1 — no repeat of the round-7 regression. `--sky` itself stays
+     reserved for the hero, which keeps its own deeper gradient. */
+  background: var(--sky-tint);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
@@ -248,19 +250,28 @@ p { margin: 0 0 12px; }
    hand-placed feel. Color is set per-section below (falls back to
    sea-dark/sea-tint here so nothing is unstyled if a section is added
    without a specific rule). */
+/* Round 20: client feedback — the eyebrow tag (e.g. "ГДЕ МЫ НАХОДИМСЯ")
+   read as too small next to its h2, most visibly in #location. Bumped
+   site-wide (this one rule feeds all 7 sections' eyebrows, so the fix is
+   automatically consistent everywhere, not just #location) from 12px to
+   14/16px and scaled padding/spacing to match, closing some of the gap
+   to the 30–32px h2 without it competing with the heading. */
 .eyebrow {
   display: inline-block;
   font-family: var(--font-body);
   font-weight: 800;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   letter-spacing: 0.02em;
-  padding: 7px 16px;
+  padding: 8px 18px;
   border-radius: var(--radius-pill);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   transform: rotate(-1.6deg);
   background: var(--sea-tint);
   color: var(--sea-dark);
+}
+@media (min-width: 720px) {
+  .eyebrow { font-size: 16px; padding: 9px 20px; }
 }
 .eyebrow-onblue { color: var(--sea-dark); background: var(--sea-tint); }
 #about .eyebrow { background: var(--sun-tint); color: var(--sun-dark); }
@@ -268,9 +279,17 @@ p { margin: 0 0 12px; }
 #teachers .eyebrow { background: var(--raspberry-tint); color: var(--raspberry); }
 #why-us .eyebrow { background: var(--green-tint); color: var(--green-text); transform: rotate(1.4deg); }
 #programs .eyebrow { background: var(--plum-tint); color: var(--plum); }
-#reviews .eyebrow { background: var(--sea-tint); color: var(--sea-dark); }
+/* Round 20: #reviews and #location used to sit on plain/near-white
+   sections, so their sea-tint/sky-tint pills read as clear pastel chips.
+   Now that the page canvas itself is --sky-tint, those two tints are
+   close enough to the new body color to nearly disappear (sky-tint on
+   sky-tint was a literal 0-contrast match). Switched both to a solid
+   white pill instead — still reads as their section's "sticker",
+   pops cleanly against the blue canvas, and keeps its existing text
+   color (already AA-safe on white). */
+#reviews .eyebrow { background: var(--white); color: var(--sea-dark); }
 #gallery .eyebrow { background: var(--olive-tint); color: var(--olive); transform: rotate(1.4deg); }
-#location .eyebrow { background: var(--sky-tint); color: var(--sky-dark); }
+#location .eyebrow { background: var(--white); color: var(--sky-dark); }
 .section-head.center .eyebrow { transform: rotate(-1.6deg); }
 .on-blue-muted { color: var(--text-secondary) !important; }
 .section-head .on-blue-muted { margin-top: 12px; }
@@ -325,7 +344,10 @@ section { padding: 64px 0; }
 #about .blob-b { background: var(--orange-tint); }
 #why-us .blob-a { background: var(--green-tint); }
 #why-us .blob-b { background: var(--sea-tint); }
-#reviews .blob-a { background: var(--sky-tint); }
+/* Round 20: blob-a was --sky-tint, identical to the new page background
+   — an invisible decorative blob. Swapped to --raspberry-tint (still
+   just a palette tint, now visibly distinct from the blue canvas). */
+#reviews .blob-a { background: var(--raspberry-tint); }
 #reviews .blob-b { background: var(--plum-tint); }
 
 .section-head {
@@ -334,7 +356,12 @@ section { padding: 64px 0; }
 }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
 
-#how-it-works, #why-us, #teachers, #location { background: var(--surface); }
+/* Round 20: these 4 sections used to band to --surface (near-white) for
+   subtle rhythm against a white body. Now that the body itself is the
+   blue canvas (--sky-tint), that banding is dropped so the whole page
+   reads as one continuous blue — separation between sections comes from
+   the (already white) .card/.field elements sitting on top, not from
+   alternating page background. */
 
 /* ==========================================================================
    Buttons

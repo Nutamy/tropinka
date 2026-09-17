@@ -40,7 +40,18 @@
      a flash of the fallback font on first paint. -->
 <link rel="preload" as="font" type="font/woff2" href="fonts/comfortaa-cyrillic-700-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/nunito-cyrillic-400-normal.woff2" crossorigin>
-<link rel="stylesheet" href="css/styles.css">
+<!-- Round 20: ?v= cache-busting query param — /css/* and /js/* are served
+     with a year-long `immutable` Cache-Control (see _headers), which is
+     great for repeat-visit speed but means a plain reload (and, on some
+     setups, even the CDN edge) keeps the OLD file forever once a real
+     person's browser has it cached — incognito was the only way to see
+     an update because it starts with an empty cache. Bumping this number
+     changes the URL itself, so it's treated as a brand-new file with
+     nothing to reuse from cache. RULE: bump this same number in the
+     <script src="js/main.js?v=..."> tag below on every round that edits
+     css/styles.css OR js/main.js — a version bump only on one of the two
+     still fixes that one file specifically. -->
+<link rel="stylesheet" href="css/styles.css?v=20">
 
 <!-- Cloudflare Turnstile widget script (anti-spam on the lead form below).
      `async defer` — never blocks rendering or LCP. -->
@@ -960,6 +971,6 @@
   <img src="" alt="" id="lightboxImg">
 </div>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20"></script>
 </body>
 </html>
