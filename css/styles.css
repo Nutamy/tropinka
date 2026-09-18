@@ -206,15 +206,21 @@ body {
   font-size: 17px;
   line-height: 1.62;
   color: var(--ink);
-  /* Round 20: client wants a blue background across the whole site.
-     Round 7 tried the full-saturation brand blue (--sky, #6AC6ED) as the
-     page canvas and had to revert it — text contrast on it was ≈1.9:1,
-     far below the 4.5:1 AA minimum. `--sky-tint` is the same hue at ~90%
-     white (already used elsewhere for badges/text-safe labels), so it
-     reads clearly as "blue" while keeping ink-on-background contrast at
-     ~9:1 — no repeat of the round-7 regression. `--sky` itself stays
-     reserved for the hero, which keeps its own deeper gradient. */
-  background: var(--sky-tint);
+  /* Round 20: client confirmed she means the actual brand blue
+     (--sky, #6AC6ED) sitewide, not a pale wash — an earlier pass here
+     used --sky-tint (a ~90%-white version) and it read as barely-there.
+     Round 7 had reverted full --sky as the page background because
+     WHITE text on it was ≈1.9:1 (way under the 4.5:1 AA minimum) — but
+     that project no longer uses white body text anywhere outside the
+     header/footer's own dark/light surfaces; h1/h2/p have used --ink
+     (dark) on top of this exact blue in the hero the whole time, at
+     ~6.75:1, which is what makes it safe to extend sitewide now. Nearly
+     all substantive paragraph text on the page already lives inside
+     white/near-white .card-type containers (reviews, teachers, programs,
+     trust items, the location panel, the lead form) — those keep their
+     own explicit white background regardless of what's behind them, so
+     this only changes the canvas showing through in the gaps. */
+  background: var(--sky);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
@@ -326,29 +332,10 @@ mark.hl-green { --hl-color: var(--green-tint); }
 section { padding: 64px 0; }
 @media (min-width: 960px) { section { padding: 96px 0; } }
 
-/* Soft organic blobs — large, heavily blurred pastel circles sitting behind
-   a section's content, purely decorative (aria-hidden, no text/meaning) and
-   low-opacity enough that body text keeps its usual contrast on top. Takes
-   the "sterile" edge off a plain white section without adding visual noise:
-   still just the palette's own pastel tints, nothing new. */
-.blob-decor { position: relative; overflow: hidden; }
-.blob-decor > .container { position: relative; z-index: 1; }
-.blob { position: absolute; border-radius: 50%; filter: blur(50px); pointer-events: none; z-index: 0; opacity: 0.55; }
-.blob-a { width: 320px; height: 320px; top: -140px; left: -90px; }
-.blob-b { width: 260px; height: 260px; bottom: -110px; right: -70px; }
-@media (max-width: 640px) {
-  .blob-a { width: 220px; height: 220px; top: -90px; left: -80px; }
-  .blob-b { width: 180px; height: 180px; bottom: -70px; right: -60px; }
-}
-#about .blob-a { background: var(--sun-tint); }
-#about .blob-b { background: var(--orange-tint); }
-#why-us .blob-a { background: var(--green-tint); }
-#why-us .blob-b { background: var(--sea-tint); }
-/* Round 20: blob-a was --sky-tint, identical to the new page background
-   — an invisible decorative blob. Swapped to --raspberry-tint (still
-   just a palette tint, now visibly distinct from the blue canvas). */
-#reviews .blob-a { background: var(--raspberry-tint); }
-#reviews .blob-b { background: var(--plum-tint); }
+/* Round 21: removed the blurred corner "blob" decoration (#about, #why-us,
+   #reviews) — client called the corner glow visual noise, and it clashed
+   with the now-flat, seamless page canvas. Markup and rules dropped
+   together; nothing else references .blob-decor/.blob. */
 
 .section-head {
   max-width: 640px;
@@ -532,8 +519,12 @@ section { padding: 64px 0; }
    ========================================================================== */
 
 .hero {
-  /* Official kit header gradient — brand banner treatment, now the hero. */
-  background: linear-gradient(160deg, #6AC6ED, #8FD6F2);
+  /* Round 21: was its own linear-gradient(160deg, #6AC6ED, #8FD6F2), which
+     ends lighter than the page canvas (--sky, flat #6AC6ED) directly below
+     it — the two-tone edge read as a hard seam between hero and #about.
+     Flat --sky matches the canvas exactly, so the hero blends into the
+     rest of the page with no visible boundary. */
+  background: var(--sky);
   padding: 44px 0 64px;
   overflow: hidden;
 }
@@ -735,7 +726,9 @@ section { padding: 64px 0; }
 .about-logo {
   border-radius: 50%;
   background: #fff;
-  box-shadow: var(--shadow-sun);
+  /* Solid gold ring (brand --sun) via box-shadow spread, not `border` —
+     keeps the 120×120 box size exact instead of growing it. */
+  box-shadow: 0 0 0 3px var(--sun), var(--shadow-sun);
   margin: 0 auto 20px;
 }
 
