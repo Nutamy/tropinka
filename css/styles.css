@@ -128,7 +128,18 @@
   --ink: #3B2A4A;         /* body text */
 
   /* Neutral support (systemic, not in the named palette) */
-  --surface: #F7FBFD;
+  /* Round 23: client disliked plain white card/component backgrounds
+     showing up against the blue page canvas everywhere except the
+     "Развиваем" icon grid — asked for that same warm beige site-wide.
+     --surface was a near-white blue tint (#F7FBFD); repointed to the
+     same beige used by .develop-section's gradient (#FFF3E4) so every
+     component that already uses this token (cards, form fields, price
+     rows, anchor block) picks it up in one place. Contrast checked:
+     --ink on this beige is ~11.9:1, --text-secondary ~5.5:1 — both
+     comfortably clear AA. .develop-item's own white cards are left
+     untouched — they're the reference this was matched against, not
+     a target to change. */
+  --surface: #FFF3E4;
   --border: #DCEBF3;
   --border-soft: #EAF2F7;
   --text-secondary: #6E5C79;
@@ -162,6 +173,15 @@
   --sun-dark: #8A6800;    /* star ratings, on-blue small labels */
   --green-text: #1B783A; /* "Есть места" badge, verified checkmark, form success */
   --sky-dark: #1D7CA3;    /* text-safe sky — icons/labels on pale sky tints */
+
+  /* Round 23: icon-badge inversion — background becomes the saturated
+     hue, icon glyph becomes white (client wanted the icons "brighter"
+     everywhere). --orange and --olive are too light for a white glyph
+     to clear 3:1 non-text contrast (2.97:1 / 2.81:1 measured), so — same
+     pattern as --sun-dark/--sky-dark/--green-text above — darker,
+     icon-only variants exist here. White-on-these measured ~5:1. */
+  --orange-dark: #B45423;
+  --olive-dark: #6B7A2F;
 
   /* Pastel tints — same 8 rotating hues, mixed ~90% into white. Used for
      sticker eyebrows, icon badges and section washes that want to read as
@@ -212,6 +232,16 @@ body {
   font-size: 17px;
   line-height: 1.62;
   color: var(--ink);
+  /* Round 23: safety net for the "text runs off the edge on mobile"
+     report — re-tested 320–1440px with real fonts/images and found 0px
+     overflow anywhere on this build, so the visible bug is most likely
+     an older, not-yet-redeployed version still live on
+     tropinka.pages.dev (see the cache-busting note at the top of this
+     file — this is exactly the class of bug that note exists for).
+     Adding this site-wide regardless: any future long unbroken word
+     (a name, an email, a URL typed into content) now wraps instead of
+     forcing width, at zero visual cost to current content. */
+  overflow-wrap: break-word;
   /* Round 20: client confirmed she means the actual brand blue
      (--sky, #6AC6ED) sitewide, not a pale wash — an earlier pass here
      used --sky-tint (a ~90%-white version) and it read as barely-there.
@@ -268,6 +298,10 @@ p { margin: 0 0 12px; }
    automatically consistent everywhere, not just #location) from 12px to
    14/16px and scaled padding/spacing to match, closing some of the gap
    to the 30–32px h2 without it competing with the heading. */
+/* Round 23: client called the eyebrow's slight tilt "crooked" — every
+   `transform: rotate(...)` below (base rule, per-section overrides, and
+   the .section-head.center override) is dropped so all eyebrow chips
+   sit perfectly straight everywhere. */
 .eyebrow {
   display: inline-block;
   font-family: var(--font-body);
@@ -278,7 +312,6 @@ p { margin: 0 0 12px; }
   padding: 8px 18px;
   border-radius: var(--radius-pill);
   margin-bottom: 16px;
-  transform: rotate(-1.6deg);
   background: var(--sea-tint);
   color: var(--sea-dark);
 }
@@ -287,9 +320,9 @@ p { margin: 0 0 12px; }
 }
 .eyebrow-onblue { color: var(--sea-dark); background: var(--sea-tint); }
 #about .eyebrow { background: var(--sun-tint); color: var(--sun-dark); }
-#how-it-works .eyebrow { background: var(--orange-tint); color: var(--orange); transform: rotate(1.4deg); }
+#how-it-works .eyebrow { background: var(--orange-tint); color: var(--orange); }
 #teachers .eyebrow { background: var(--raspberry-tint); color: var(--raspberry); }
-#why-us .eyebrow { background: var(--green-tint); color: var(--green-text); transform: rotate(1.4deg); }
+#why-us .eyebrow { background: var(--green-tint); color: var(--green-text); }
 #programs .eyebrow { background: var(--plum-tint); color: var(--plum); }
 /* Round 20: #reviews and #location used to sit on plain/near-white
    sections, so their sea-tint/sky-tint pills read as clear pastel chips.
@@ -299,10 +332,9 @@ p { margin: 0 0 12px; }
    white pill instead — still reads as their section's "sticker",
    pops cleanly against the blue canvas, and keeps its existing text
    color (already AA-safe on white). */
-#reviews .eyebrow { background: var(--white); color: var(--sea-dark); }
-#gallery .eyebrow { background: var(--olive-tint); color: var(--olive); transform: rotate(1.4deg); }
-#location .eyebrow { background: var(--white); color: var(--sky-dark); }
-.section-head.center .eyebrow { transform: rotate(-1.6deg); }
+#reviews .eyebrow { background: var(--surface); color: var(--sea-dark); }
+#gallery .eyebrow { background: var(--olive-tint); color: var(--olive); }
+#location .eyebrow { background: var(--surface); color: var(--sky-dark); }
 .on-blue-muted { color: var(--text-secondary) !important; }
 .section-head .on-blue-muted { margin-top: 12px; }
 .caption {
@@ -328,6 +360,20 @@ mark.hl {
 }
 mark.hl-sun { --hl-color: var(--sun-tint); }
 mark.hl-green { --hl-color: var(--green-tint); }
+/* Round 23: client disliked the About paragraph having two highlighted
+   phrases at once — dropped the second (was hl-green on "легко и с
+   интересом") back to plain text and asked for "«Вундеркиндики»" to
+   stay marked but softer. This variant halves the swipe's opacity and
+   narrows its coverage (62% vs the base 56%) instead of a flat tint. */
+mark.hl-soft {
+  background: none;
+  background-image: linear-gradient(180deg, transparent 62%, rgba(255, 210, 51, 0.4) 62%);
+  color: inherit;
+  padding: 0 3px;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 
 .container {
   max-width: var(--container-max);
@@ -463,7 +509,7 @@ section { padding: 64px 0; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 243, 228, 0.96);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 24px -18px rgba(11, 49, 56, 0.4);
 }
@@ -488,7 +534,7 @@ section { padding: 64px 0; }
   height: 54px;
   border-radius: 50%;
   object-fit: cover;
-  background: #fff;
+  background: var(--surface);
   box-shadow: var(--shadow-sun);
   flex-shrink: 0;
 }
@@ -581,7 +627,7 @@ section { padding: 64px 0; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
   padding: 12px 20px;
@@ -648,7 +694,7 @@ section { padding: 64px 0; }
 
 .hero-media { position: relative; }
 .hero-media-card {
-  background: var(--white);
+  background: var(--surface);
   border-radius: var(--radius-card-lg);
   box-shadow: 0 26px 50px -20px rgba(11, 49, 56, 0.45);
   padding: 14px;
@@ -743,7 +789,7 @@ section { padding: 64px 0; }
 
 .about-logo {
   border-radius: 50%;
-  background: #fff;
+  background: var(--surface);
   /* Solid gold ring (brand --sun) via box-shadow spread, not `border` —
      keeps the 120×120 box size exact instead of growing it. */
   box-shadow: 0 0 0 3px var(--sun), var(--shadow-sun);
@@ -819,14 +865,19 @@ section { padding: 64px 0; }
   box-shadow: inset 0 -3px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
 .develop-icon svg { stroke-width: 2.1; }
-.develop-item:nth-child(8n+1) .develop-icon { background: var(--sky-tint); color: var(--sky-dark); box-shadow: inset 0 -3px 0 rgba(29,124,163,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(29,124,163,0.55); }
-.develop-item:nth-child(8n+2) .develop-icon { background: var(--sun-tint); color: var(--sun-dark); box-shadow: inset 0 -3px 0 rgba(138,104,0,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(138,104,0,0.5); }
-.develop-item:nth-child(8n+3) .develop-icon { background: var(--raspberry-tint); color: var(--raspberry); box-shadow: inset 0 -3px 0 rgba(192,32,128,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(192,32,128,0.5); }
-.develop-item:nth-child(8n+4) .develop-icon { background: var(--olive-tint); color: var(--olive); box-shadow: inset 0 -3px 0 rgba(143,163,63,0.14), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(143,163,63,0.5); }
-.develop-item:nth-child(8n+5) .develop-icon { background: var(--orange-tint); color: var(--orange); box-shadow: inset 0 -3px 0 rgba(240,112,47,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(240,112,47,0.5); }
-.develop-item:nth-child(8n+6) .develop-icon { background: var(--green-tint); color: var(--green-text); box-shadow: inset 0 -3px 0 rgba(27,120,58,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(47,160,80,0.5); }
-.develop-item:nth-child(8n+7) .develop-icon { background: var(--plum-tint); color: var(--plum); box-shadow: inset 0 -3px 0 rgba(128,47,128,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(128,47,128,0.5); }
-.develop-item:nth-child(8n+8) .develop-icon { background: var(--sea-tint); color: var(--sea); box-shadow: inset 0 -3px 0 rgba(31,143,144,0.14), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(31,143,144,0.5); }
+/* Round 23: client wanted the icon badges brighter — inverted each one
+   (fill becomes the saturated/text-safe hue, glyph becomes white)
+   instead of pale tint + colored outline. See the --orange-dark/
+   --olive-dark tokens above for why those two hues specifically use a
+   darker fill than their plain palette color. */
+.develop-item:nth-child(8n+1) .develop-icon { background: var(--sky-dark); color: var(--white); box-shadow: inset 0 -3px 0 rgba(29,124,163,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(29,124,163,0.55); }
+.develop-item:nth-child(8n+2) .develop-icon { background: var(--sun-dark); color: var(--white); box-shadow: inset 0 -3px 0 rgba(138,104,0,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(138,104,0,0.5); }
+.develop-item:nth-child(8n+3) .develop-icon { background: var(--raspberry); color: var(--white); box-shadow: inset 0 -3px 0 rgba(192,32,128,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(192,32,128,0.5); }
+.develop-item:nth-child(8n+4) .develop-icon { background: var(--olive-dark); color: var(--white); box-shadow: inset 0 -3px 0 rgba(143,163,63,0.14), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(143,163,63,0.5); }
+.develop-item:nth-child(8n+5) .develop-icon { background: var(--orange-dark); color: var(--white); box-shadow: inset 0 -3px 0 rgba(240,112,47,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(240,112,47,0.5); }
+.develop-item:nth-child(8n+6) .develop-icon { background: var(--green-text); color: var(--white); box-shadow: inset 0 -3px 0 rgba(27,120,58,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(47,160,80,0.5); }
+.develop-item:nth-child(8n+7) .develop-icon { background: var(--plum); color: var(--white); box-shadow: inset 0 -3px 0 rgba(128,47,128,0.12), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(128,47,128,0.5); }
+.develop-item:nth-child(8n+8) .develop-icon { background: var(--sea); color: var(--white); box-shadow: inset 0 -3px 0 rgba(31,143,144,0.14), inset 0 2px 2px rgba(255,255,255,0.7), 0 12px 22px -14px rgba(31,143,144,0.5); }
 
 /* ==========================================================================
    How a lesson works — timeline
@@ -844,7 +895,7 @@ section { padding: 64px 0; }
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
   padding: 14px 24px 14px 14px;
@@ -862,11 +913,11 @@ section { padding: 64px 0; }
 }
 .flow-step .icon svg { stroke-width: 2.1; }
 .flow-step:nth-child(1) { box-shadow: 0 14px 28px -22px rgba(29,124,163,0.7), var(--shadow-card); }
-.flow-step:nth-child(1) .icon { background: var(--sky-tint); color: var(--sky-dark); }
+.flow-step:nth-child(1) .icon { background: var(--sky-dark); color: var(--white); }
 .flow-step:nth-child(3) { box-shadow: 0 14px 28px -22px rgba(138,104,0,0.7), var(--shadow-card); }
-.flow-step:nth-child(3) .icon { background: var(--sun-tint); color: var(--sun-dark); }
+.flow-step:nth-child(3) .icon { background: var(--sun-dark); color: var(--white); }
 .flow-step:nth-child(5) { box-shadow: 0 14px 28px -22px rgba(192,32,128,0.6), var(--shadow-card); }
-.flow-step:nth-child(5) .icon { background: var(--raspberry-tint); color: var(--raspberry); }
+.flow-step:nth-child(5) .icon { background: var(--raspberry); color: var(--white); }
 .flow-step strong { font-family: var(--font-display); font-size: 15px; }
 .flow-arrow { color: var(--border); font-size: 22px; }
 
@@ -879,7 +930,7 @@ section { padding: 64px 0; }
 .stat-box {
   text-align: center;
   padding: 22px 16px;
-  background: #fff;
+  background: var(--surface);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
@@ -905,7 +956,7 @@ section { padding: 64px 0; }
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  background: var(--white);
+  background: var(--surface);
   border-radius: var(--radius-card);
   padding: 22px;
   box-shadow: var(--shadow-card);
@@ -925,10 +976,10 @@ section { padding: 64px 0; }
   box-shadow: inset 0 -2px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
 .approach-icon svg { stroke-width: 2.1; }
-.approach-item:nth-child(1) .approach-icon { background: var(--sea-tint); color: var(--sea); }
-.approach-item:nth-child(2) .approach-icon { background: var(--sky-tint); color: var(--sky-dark); }
-.approach-item:nth-child(3) .approach-icon { background: var(--orange-tint); color: var(--orange); }
-.approach-item:nth-child(4) .approach-icon { background: var(--green-tint); color: var(--green-text); }
+.approach-item:nth-child(1) .approach-icon { background: var(--sea); color: var(--white); }
+.approach-item:nth-child(2) .approach-icon { background: var(--sky-dark); color: var(--white); }
+.approach-item:nth-child(3) .approach-icon { background: var(--orange-dark); color: var(--white); }
+.approach-item:nth-child(4) .approach-icon { background: var(--green-text); color: var(--white); }
 .approach-item h3 { font-size: 17px; margin-bottom: 4px; }
 .approach-item p { font-size: 14px; color: var(--text-secondary); margin: 0; }
 
@@ -940,7 +991,7 @@ section { padding: 64px 0; }
 
 .program-card {
   position: relative;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-card-lg);
   padding: 32px;
@@ -951,7 +1002,7 @@ section { padding: 64px 0; }
 .program-card.flagship {
   border: 2px solid var(--sun);
   box-shadow: var(--shadow-sun);
-  background: linear-gradient(180deg, #FFFDF3, var(--white) 40%);
+  background: linear-gradient(180deg, #FFFDF3, var(--surface) 40%);
 }
 .program-card .badge { align-self: flex-start; margin-bottom: 14px; }
 .program-card h3 { font-size: 22px; margin-bottom: 6px; }
@@ -1053,7 +1104,7 @@ section { padding: 64px 0; }
   justify-content: space-between;
   align-items: center;
   padding: 14px 18px;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   font-weight: 700;
@@ -1090,7 +1141,7 @@ section { padding: 64px 0; }
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  background: #fff;
+  background: var(--surface);
   border-radius: var(--radius-card);
   padding: 24px;
   box-shadow: var(--shadow-card);
@@ -1111,11 +1162,11 @@ section { padding: 64px 0; }
   box-shadow: inset 0 -2px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
 .trust-card .icon-wrap svg { stroke-width: 2.1; }
-.trust-card:nth-child(1) .icon-wrap { background: var(--plum-tint); color: var(--plum); }
-.trust-card:nth-child(2) .icon-wrap { background: var(--green-tint); color: var(--green-text); }
-.trust-card:nth-child(3) .icon-wrap { background: var(--raspberry-tint); color: var(--raspberry); }
-.trust-card:nth-child(4) .icon-wrap { background: var(--sun-tint); color: var(--sun-dark); }
-.trust-card:nth-child(5) .icon-wrap { background: var(--sea-tint); color: var(--sea); }
+.trust-card:nth-child(1) .icon-wrap { background: var(--plum); color: var(--white); }
+.trust-card:nth-child(2) .icon-wrap { background: var(--green-text); color: var(--white); }
+.trust-card:nth-child(3) .icon-wrap { background: var(--raspberry); color: var(--white); }
+.trust-card:nth-child(4) .icon-wrap { background: var(--sun-dark); color: var(--white); }
+.trust-card:nth-child(5) .icon-wrap { background: var(--sea); color: var(--white); }
 .trust-card h3 { margin-bottom: 6px; }
 .trust-card p { color: var(--text-secondary); margin: 0; }
 
@@ -1124,7 +1175,7 @@ section { padding: 64px 0; }
    ========================================================================== */
 
 .review-card {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-card);
   padding: 26px;
@@ -1164,7 +1215,7 @@ section { padding: 64px 0; }
    ========================================================================== */
 
 .teacher-card {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-card);
   overflow: hidden;
@@ -1311,7 +1362,7 @@ section { padding: 64px 0; }
   height: 46px;
   border-radius: 50%;
   border: none;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   font-size: 24px;
   line-height: 1;
@@ -1345,7 +1396,7 @@ section { padding: 64px 0; }
   flex-direction: column;
   justify-content: center;
   gap: 18px;
-  background: #fff;
+  background: var(--surface);
   border-radius: var(--radius-card-lg);
   padding: 32px;
   box-shadow: var(--shadow-card);
@@ -1361,9 +1412,9 @@ section { padding: 64px 0; }
   flex-shrink: 0;
   box-shadow: inset 0 -2px 0 rgba(59,42,74,0.05), inset 0 2px 2px rgba(255,255,255,0.7);
 }
-.location-row:nth-child(1) .icon-wrap { background: var(--sea-tint); color: var(--sea); }
-.location-row:nth-child(2) .icon-wrap { background: var(--green-tint); color: var(--green-text); }
-.location-row:nth-child(3) .icon-wrap { background: var(--sun-tint); color: var(--sun-dark); }
+.location-row:nth-child(1) .icon-wrap { background: var(--sea); color: var(--white); }
+.location-row:nth-child(2) .icon-wrap { background: var(--green-text); color: var(--white); }
+.location-row:nth-child(3) .icon-wrap { background: var(--sun-dark); color: var(--white); }
 .location-row h3 { font-size: 16px; margin-bottom: 2px; }
 .location-row p { color: var(--text-secondary); margin: 0; }
 .location-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
@@ -1399,7 +1450,7 @@ section { padding: 64px 0; }
    ========================================================================== */
 
 .lead-form {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-card-lg);
   padding: 32px;
@@ -1475,7 +1526,7 @@ section { padding: 64px 0; }
 }
 @media (min-width: 720px) { .footer-grid { grid-template-columns: minmax(0,1.2fr) minmax(0,0.9fr) minmax(0,0.9fr) minmax(0,0.9fr); } }
 .footer-logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--white); margin-bottom: 12px; }
-.footer-logo img { border-radius: 50%; background: #fff; }
+.footer-logo img { border-radius: 50%; background: var(--surface); }
 .footer-about { max-width: 320px; font-size: 14px; }
 .footer-col h4 { font-family: var(--font-body); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 14px; }
 .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
@@ -1548,7 +1599,7 @@ section { padding: 64px 0; }
   height: 44px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--surface);
   align-items: center;
   justify-content: center;
 }
@@ -1589,7 +1640,7 @@ section { padding: 64px 0; }
 .mobile-nav {
   position: fixed;
   inset: 76px 0 0 0;
-  background: var(--white);
+  background: var(--surface);
   z-index: 49;
   padding: 24px 20px;
   overflow-y: auto;
