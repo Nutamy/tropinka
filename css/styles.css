@@ -1001,11 +1001,15 @@ section { padding: 64px 0; }
   gap: 8px;
   margin: 10px 0 16px;
 }
+/* Icon-badge inversion (see Round 23 note above): solid --olive-dark
+   fill with white text, matching --olive's documented "category tags"
+   role. Plain --olive is too light for white text to clear 4.5:1 AA —
+   --olive-dark measures ~4.7:1, same fix already used for icon glyphs. */
 .program-meta span {
   font-size: 13px;
-  font-weight: 700;
-  color: var(--sea-dark);
-  background: rgba(31,143,144,0.1);
+  font-weight: 800;
+  color: var(--white);
+  background: var(--olive-dark);
   border-radius: var(--radius-pill);
   padding: 5px 12px;
 }
