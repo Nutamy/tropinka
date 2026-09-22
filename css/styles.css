@@ -144,6 +144,12 @@
   --radius-card-lg: 24px;
   --container-max: 1180px;
 
+  /* Sticky header height — kept in sync with .site-header .container's
+     "height" at each breakpoint (719px/480px) below, and consumed by
+     .hero's min-height so the hero always fills exactly what's left of
+     the first viewport instead of drifting out of sync with it. */
+  --header-h: 84px;
+
   /* Tinted shadows — colored halo, never gray */
   --shadow-sun: 0 8px 18px -10px rgba(214, 164, 0, 0.9);
   --shadow-sea: 0 18px 40px -22px rgba(31, 143, 144, 0.55);
@@ -527,6 +533,18 @@ section { padding: 64px 0; }
   background: var(--sky);
   padding: 44px 0 64px;
   overflow: hidden;
+  /* Round 22: the hero used to be sized purely by its own padding, tuned
+     once for one specific short phone (iPhone SE, 667px tall). On any
+     taller viewport that padding falls short of the actual screen, and
+     #about's top edge (its logo/eyebrow) ends up visible under the fold —
+     exactly the "кусок второго экрана" bug. Tying min-height to the
+     viewport instead (minus the sticky header, via --header-h) makes the
+     hero always fill precisely what's left of the first screen, at any
+     height, while a grid + align-content: center keeps the content block
+     vertically centered inside that space instead of stretched. */
+  display: grid;
+  align-content: center;
+  min-height: calc(100vh - var(--header-h));
 }
 @media (min-width: 960px) { .hero { padding: 56px 0 80px; } }
 
@@ -1542,6 +1560,7 @@ section { padding: 64px 0; }
    below while the round logo mark keeps a fixed, never-shrinking size
    (flex-shrink: 0 on .logo-mark), so it never gets squeezed. */
 @media (max-width: 719px) {
+  :root { --header-h: 76px; }
   .site-header .container { gap: 10px; height: 76px; }
   .logo { font-size: 17px; gap: 8px; }
   .logo-mark { width: 42px; height: 42px; }
@@ -1549,6 +1568,7 @@ section { padding: 64px 0; }
 /* Narrow phones (iPhone SE / small Android, ~320-480px): tighten further
    to avoid horizontal overflow. */
 @media (max-width: 480px) {
+  :root { --header-h: 72px; }
   .site-header .container { gap: 8px; height: 72px; }
   .logo { font-size: 14px; gap: 6px; }
   .logo-mark { width: 36px; height: 36px; }
