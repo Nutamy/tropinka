@@ -360,20 +360,9 @@ mark.hl {
 }
 mark.hl-sun { --hl-color: var(--sun-tint); }
 mark.hl-green { --hl-color: var(--green-tint); }
-/* Round 23: client disliked the About paragraph having two highlighted
-   phrases at once — dropped the second (was hl-green on "легко и с
-   интересом") back to plain text and asked for "«Вундеркиндики»" to
-   stay marked but softer. This variant halves the swipe's opacity and
-   narrows its coverage (62% vs the base 56%) instead of a flat tint. */
-mark.hl-soft {
-  background: none;
-  background-image: linear-gradient(180deg, transparent 62%, rgba(255, 210, 51, 0.4) 62%);
-  color: inherit;
-  padding: 0 3px;
-  border-radius: 3px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
+/* Round 24: client read the highlighter swipe on "«Вундеркиндики»" as a
+   rendering bug (half-colored word). Swapped the mark.hl-soft marker
+   effect for plain <strong> — bold weight only, no background. */
 
 .container {
   max-width: var(--container-max);
