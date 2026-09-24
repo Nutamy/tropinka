@@ -62,6 +62,17 @@
     var submitBtn = document.getElementById('leadSubmit');
     if (!form || !status || !submitBtn) return;
 
+    var turnstileEl = form.querySelector('.cf-turnstile');
+
+    // Turnstile tokens are single-use: siteverify consumes the token on every
+    // request, success or failure, so the widget must mint a fresh one before
+    // the form can be submitted again.
+    function resetTurnstile() {
+      if (turnstileEl && window.turnstile) {
+        try { window.turnstile.reset(turnstileEl); } catch (err) { /* widget not rendered yet */ }
+      }
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -69,6 +80,15 @@
       var honeypot = form.querySelector('#website');
       if (honeypot && honeypot.value) {
         // Silently drop likely bot submissions.
+        return;
+      }
+
+      // Challenge not solved yet (or script blocked) — the server would reject
+      // with turnstile_missing, so tell the visitor instead of a generic error.
+      var tokenInput = form.querySelector('[name="cf-turnstile-response"]');
+      if (turnstileEl && (!tokenInput || !tokenInput.value)) {
+        status.className = 'form-status show err';
+        status.textContent = 'Подождите пару секунд, пока завершится проверка «я не робот», и отправьте ещё раз.';
         return;
       }
 
@@ -103,6 +123,7 @@
           status.textContent = 'Не получилось отправить заявку. Напишите нам сразу в WhatsApp — кнопка выше.';
         })
         .finally(function () {
+          resetTurnstile();
           submitBtn.disabled = false;
           submitBtn.textContent = originalLabel;
         });
