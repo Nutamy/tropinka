@@ -118,9 +118,16 @@
             throw new Error((result.data && result.data.error) || 'Request failed');
           }
         })
-        .catch(function () {
+        .catch(function (err) {
           status.classList.add('show', 'err');
-          status.textContent = 'Не получилось отправить заявку. Напишите нам сразу в WhatsApp — кнопка выше.';
+          // Anti-bot check failures are recoverable by retrying with a fresh token,
+          // so don't send the visitor away to WhatsApp for them.
+          if (err && /^turnstile_/.test(err.message)) {
+            status.textContent = 'Проверка «я не робот» не прошла. Подождите пару секунд и отправьте ещё раз.';
+          } else {
+            status.textContent = 'Не получилось отправить заявку. Напишите нам сразу в WhatsApp — кнопка выше.';
+          }
+          console.error('Lead form submit failed:', err && err.message);
         })
         .finally(function () {
           resetTurnstile();

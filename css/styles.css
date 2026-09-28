@@ -1129,6 +1129,8 @@ section { padding: 64px 0; }
    ========================================================================== */
 
 .why-us-address { margin-top: 32px; }
+/* Was an inline style attribute — blocked by the strict CSP (style-src without unsafe-inline). */
+.why-us-address-icon { vertical-align: -3px; margin-right: 2px; }
 
 .trust-card {
   display: flex;
