@@ -68,7 +68,7 @@ npx wrangler pages deploy . --project-name=tropinka
 | Переменная | Назначение |
 |---|---|
 | `TELEGRAM_BOT_TOKEN` | токен Telegram-бота, принимающего заявки |
-| `TELEGRAM_CHAT_ID` | чат/группа, куда приходят заявки |
+| `TELEGRAM_CHAT_ID` | чат куда приходят заявки |
 | `TURNSTILE_SECRET_KEY` | ключ проверки Cloudflare Turnstile |
 
 ## Автор
